@@ -25,16 +25,25 @@ We're going slow and building up the picture in layers:
 
 ## Structure
 
-- `services/` — one Markdown file per service, following
-  `templates/service-template.md`
-- `templates/` — the schema/template used to document each service
-- `diagrams/` — Mermaid diagrams (org chart, process flows, system maps)
-  generated from the service docs
+- `services/` — one folder per reference-architecture Service, each with a
+  `processes/` folder holding one folder per process/subprocess
+  (`README.md` + sample `data/`). See [services/README.md](services/README.md)
+  for the two-level layout and how it relates to `docs/schema.md`.
+- `templates/` — the schema/template used to document each process
+- `diagrams/` — Mermaid diagrams (org chart, reference architecture)
+  generated from the docs
 - `docs/` — schema reference and methodology notes
 - `INVENTORY.md` — the running high-level list of every known service
   (name, team, status of documentation)
 
 ## Status
+
+**The department-level view (org chart, reference architecture, artifact)
+is locked for now.** Work has moved to deepening one Service at a time,
+starting with [services/it-risk-issues-management/](services/it-risk-issues-management/)
+and its first documented process, [Aggregated Issues Reporting](services/it-risk-issues-management/processes/aggregated-issues-reporting/)
+— trigger, inputs, outputs, and steps documented, plus synthetic sample
+data to prototype automation against.
 
 Schema defined (matrix-aware: `function` + `subteam` + `region` +
 `matrix_relationships`, see [docs/schema.md](docs/schema.md)). Layers 1–2
@@ -50,9 +59,26 @@ are documented and rendered:
 - [docs/information-architecture.md](docs/information-architecture.md) —
   the People / Process / Technology / Reference Material framework the
   artifact is organized around, and how it maps to the schema
-- Polished shareable version (Team Overview + People/Process/Technology/
-  Reference Material tabs; Process and Technology are scaffolded but empty
-  until services are documented):
+- [docs/reference-architecture.md](docs/reference-architecture.md) — the
+  Consumers / Products / Services taxonomy (Capabilities layer still
+  pending) with a draft Product×Service map, plus
+  [diagrams/reference-architecture.md](diagrams/reference-architecture.md)
+  for the Mermaid source
+- [docs/service-detail-pattern.md](docs/service-detail-pattern.md) — the
+  pattern itself (RAG → Description → Performance/Finances, each
+  drill-down carrying its own summary rating) plus the worked example,
+  IT Risk Issues Management Service
+- [docs/service-catalog.md](docs/service-catalog.md) — the same pattern
+  applied to all 17 services: a unique description, up to 3 KPIs, and
+  illustrative Performance/Finances figures for each
+- Polished shareable version — Team Overview up top, then People / Process /
+  Technology / Reference Material tabs. Process is now a three-column
+  Consumer × Product × Service map (Consumers grouped into 7, linked to
+  Products), with Consumer and Product boxes kept plain and same-sized;
+  only Service boxes are interactive — a colored dot for RAG status,
+  click to expand into candidate owner → description → Performance/
+  Finances. Technology is still scaffolded but empty until services are
+  documented:
   https://claude.ai/code/artifact/08aa5da3-9f33-4495-95e9-fa936c67c3a1
 
 Service-level inventory (Layer 3) not yet started — see

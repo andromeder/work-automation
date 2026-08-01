@@ -1,0 +1,9 @@
+Issue_ID,Title,Linked_Finding_ID,Risk_Rating,Status,Region,Target_Remediation_Date,Owner
+EI-501,Privileged access MFA gap - enterprise-wide,F-1001,High,In Remediation,US,2026-09-30,K. Brooks
+EI-502,Cloud data encryption standard non-compliance,F-1002,High,Open,EMEA,2026-08-15,L. Farrow
+EI-503,Vendor control oversight gap - SOC1 exceptions,F-1005,Medium,Open,US,2026-10-01,K. Brooks
+EI-504,Legacy infrastructure patch backlog,F-1006,Medium,In Remediation,US,2026-07-31,D. Whitfield
+EI-505,Payments logging control gap,F-1007,High,Open,US,2026-10-15,K. Brooks
+EI-506,Third-party assurance testing backlog,F-1010,High,Overdue,EMEA,2026-05-01,L. Farrow
+EI-507,Enterprise access recertification delays,,Medium,Open,US,2026-09-01,D. Whitfield
+EI-508,Regional control self-assessment coverage gap,,Low,Open,EMEA,2026-11-01,L. Farrow

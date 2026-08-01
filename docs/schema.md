@@ -30,7 +30,11 @@ automation-opportunity analysis later.
 
 ## Conventions
 
-- One file per service in `services/`, named `services/<kebab-case-name>.md`.
+- One file per service, at `services/<service-slug>/processes/<process-slug>/README.md`
+  — nested under the reference-architecture Service it belongs to (see
+  [services/README.md](../services/README.md) for why there are two
+  levels and how they relate). Sample/synthetic data for that process
+  lives alongside it in a `data/` folder.
 - Use the frontmatter block from `templates/service-template.md` — keep field
   order consistent so the docs stay easy to scan and easy to parse later if
   we automate diagram generation from the data.

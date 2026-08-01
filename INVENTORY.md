@@ -1,12 +1,12 @@
 # Service Inventory
 
-Running high-level list of every known service across the department. This
-is the breadth-first pass — each row gets a `stub` file in `services/` and
-is deepened later per [docs/schema.md](docs/schema.md).
+Running high-level list of every known process/subprocess documented
+under `services/` — see [services/README.md](services/README.md) for how
+this nests under the 17 reference-architecture Services.
 
-| Service | Team | Description | Doc Status |
-|---|---|---|---|
-| _(none yet)_ | | | |
+| Process | Service (parent) | Function | Description | Doc Status | Path |
+|---|---|---|---|---|---|
+| Aggregated Issues Reporting | IT Risk Issues Management Service | Regulatory, Audit & Issues Management | Pulls Findings, Enterprise Issues, and Internal Audit data into a master file and distributes a report | in-progress | [services/it-risk-issues-management/processes/aggregated-issues-reporting/](services/it-risk-issues-management/processes/aggregated-issues-reporting/) |
 
 ## Teams / Functions
 
