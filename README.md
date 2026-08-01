@@ -14,10 +14,12 @@ We're going slow and building up the picture in layers:
 2. **Document** — for each service, fill in the full property set defined in
    [docs/schema.md](docs/schema.md) (inputs, outputs, tools, frequency, manual
    steps, pain points, automation potential, etc).
-3. **Visualize** — generate diagrams from the documented services:
-   - **Org chart** — who owns what
-   - **Process diagrams** — step-by-step flow within a service
-   - **System diagrams** — how tools/systems connect across services
+3. **Visualize** — generate diagrams from the documented services, organized
+   along the [People / Process / Technology](docs/information-architecture.md)
+   lenses (plus a Reference Material bucket for completeness checks):
+   - **People** — org chart, who owns what
+   - **Process** — step-by-step flow within a service
+   - **Technology** — how tools/systems connect across services
 4. **Analyze** — use the documented properties to rank automation
    opportunities (effort vs. impact) and report findings.
 
@@ -45,7 +47,12 @@ are documented and rendered:
 - [diagrams/org-chart.md](diagrams/org-chart.md) — Mermaid source of truth
 - [docs/industry-frameworks.md](docs/industry-frameworks.md) — draft
   candidate industry frameworks per function, pending validation
-- Polished shareable version (click a function to expand its subteams):
+- [docs/information-architecture.md](docs/information-architecture.md) —
+  the People / Process / Technology / Reference Material framework the
+  artifact is organized around, and how it maps to the schema
+- Polished shareable version (Team Overview + People/Process/Technology/
+  Reference Material tabs; Process and Technology are scaffolded but empty
+  until services are documented):
   https://claude.ai/code/artifact/08aa5da3-9f33-4495-95e9-fa936c67c3a1
 
 Service-level inventory (Layer 3) not yet started — see
