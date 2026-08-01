@@ -1,25 +1,25 @@
-Master_ID,Source_System,Source_ID,Title,Severity_Rating,Status,Owner,Due_Date,As_Of_Date
-M-0001,Findings,F-1001,Missing MFA on privileged accounts - App-2210,High,Open,J. Alvarez,2026-08-15,2026-08-01
-M-0002,Findings,F-1002,Unencrypted data at rest - Cloud workload CW-118,High,In Remediation,M. Chen,2026-07-01,2026-08-01
-M-0003,Findings,F-1003,Stale firewall rules on DMZ segment,Medium,Open,R. Osei,2026-09-01,2026-08-01
-M-0004,Findings,F-1004,Excessive access - shared service accounts,Medium,Overdue,T. Nguyen,2026-05-01,2026-08-01
-M-0005,Findings,F-1005,Vendor SOC1 exceptions not tracked,High,Open,J. Alvarez,2026-08-20,2026-08-01
-M-0006,Findings,F-1006,Patch compliance gap - legacy servers,Medium,In Remediation,R. Osei,2026-06-30,2026-08-01
-M-0007,Findings,F-1007,Payment gateway logging incomplete,High,Open,S. Patel,2026-09-10,2026-08-01
-M-0008,Findings,F-1008,Cloud config drift - storage buckets,Low,Closed,M. Chen,2026-03-01,2026-08-01
-M-0009,Findings,F-1009,Application criticality tier undocumented,Low,Open,T. Nguyen,2026-09-18,2026-08-01
-M-0010,Findings,F-1010,Third-party penetration test overdue,High,Overdue,J. Alvarez,2026-04-05,2026-08-01
-M-0011,Enterprise Issues,EI-501,Privileged access MFA gap - enterprise-wide,High,In Remediation,K. Brooks,2026-09-30,2026-08-01
-M-0012,Enterprise Issues,EI-502,Cloud data encryption standard non-compliance,High,Open,L. Farrow,2026-08-15,2026-08-01
-M-0013,Enterprise Issues,EI-503,Vendor control oversight gap - SOC1 exceptions,Medium,Open,K. Brooks,2026-10-01,2026-08-01
-M-0014,Enterprise Issues,EI-504,Legacy infrastructure patch backlog,Medium,In Remediation,D. Whitfield,2026-07-31,2026-08-01
-M-0015,Enterprise Issues,EI-505,Payments logging control gap,High,Open,K. Brooks,2026-10-15,2026-08-01
-M-0016,Enterprise Issues,EI-506,Third-party assurance testing backlog,High,Overdue,L. Farrow,2026-05-01,2026-08-01
-M-0017,Enterprise Issues,EI-507,Enterprise access recertification delays,Medium,Open,D. Whitfield,2026-09-01,2026-08-01
-M-0018,Enterprise Issues,EI-508,Regional control self-assessment coverage gap,Low,Open,L. Farrow,2026-11-01,2026-08-01
-M-0019,Internal Audit,IA-2201,IT General Controls Audit - Access Management,High,Open,K. Brooks,2026-08-31,2026-08-01
-M-0020,Internal Audit,IA-2202,Cloud Security Audit,Medium,In Remediation,M. Chen,2026-07-15,2026-08-01
-M-0021,Internal Audit,IA-2203,Third Party Risk Management Audit,High,Open,J. Alvarez,2026-09-30,2026-08-01
-M-0022,Internal Audit,IA-2204,Payments Technology Audit,High,Open,S. Patel,2026-10-31,2026-08-01
-M-0023,Internal Audit,IA-2205,Infrastructure Patch Management Audit,Medium,Closed,R. Osei,2026-02-01,2026-08-01
-M-0024,Internal Audit,IA-2206,Data Governance Audit,Low,Open,D. Whitfield,2026-11-30,2026-08-01
+Master_ID,Source_System,Source_ID,Title,Severity_Rating,Status,Owner,Region,Business,Risk_Category,Due_Date,As_Of_Date
+M-0001,Findings,F-1001,Missing MFA on privileged accounts - App-2210,High,Open,J. Alvarez,US,Technology Infrastructure,Access Management,2026-08-15,2026-08-01
+M-0002,Findings,F-1002,Unencrypted data at rest - Cloud workload CW-118,High,In Remediation,M. Chen,EMEA,Technology Infrastructure,Data Protection,2026-07-01,2026-08-01
+M-0003,Findings,F-1003,Stale firewall rules on DMZ segment,Medium,Open,R. Osei,US,Technology Infrastructure,Network Security,2026-09-01,2026-08-01
+M-0004,Findings,F-1004,Excessive access - shared service accounts,Medium,Overdue,T. Nguyen,US,Enterprise,Access Management,2026-05-01,2026-08-01
+M-0005,Findings,F-1005,Vendor SOC1 exceptions not tracked,High,Open,J. Alvarez,US,Enterprise,Third Party Risk,2026-08-20,2026-08-01
+M-0006,Findings,F-1006,Patch compliance gap - legacy servers,Medium,In Remediation,R. Osei,EMEA,Technology Infrastructure,Patch Management,2026-06-30,2026-08-01
+M-0007,Findings,F-1007,Payment gateway logging incomplete,High,Open,S. Patel,US,Payments,Application Security,2026-09-10,2026-08-01
+M-0008,Findings,F-1008,Cloud config drift - storage buckets,Low,Closed,M. Chen,EMEA,Technology Infrastructure,Cloud Security,2026-03-01,2026-08-01
+M-0009,Findings,F-1009,Application criticality tier undocumented,Low,Open,T. Nguyen,US,Enterprise,Governance & Documentation,2026-09-18,2026-08-01
+M-0010,Findings,F-1010,Third-party penetration test overdue,High,Overdue,J. Alvarez,EMEA,Enterprise,Third Party Risk,2026-04-05,2026-08-01
+M-0011,Enterprise Issues,EI-501,Privileged access MFA gap - enterprise-wide,High,In Remediation,K. Brooks,US,Enterprise,Access Management,2026-09-30,2026-08-01
+M-0012,Enterprise Issues,EI-502,Cloud data encryption standard non-compliance,High,Open,L. Farrow,EMEA,Technology Infrastructure,Data Protection,2026-08-15,2026-08-01
+M-0013,Enterprise Issues,EI-503,Vendor control oversight gap - SOC1 exceptions,Medium,Open,K. Brooks,US,Enterprise,Third Party Risk,2026-10-01,2026-08-01
+M-0014,Enterprise Issues,EI-504,Legacy infrastructure patch backlog,Medium,In Remediation,D. Whitfield,US,Technology Infrastructure,Patch Management,2026-07-31,2026-08-01
+M-0015,Enterprise Issues,EI-505,Payments logging control gap,High,Open,K. Brooks,US,Payments,Application Security,2026-10-15,2026-08-01
+M-0016,Enterprise Issues,EI-506,Third-party assurance testing backlog,High,Overdue,L. Farrow,EMEA,Enterprise,Third Party Risk,2026-05-01,2026-08-01
+M-0017,Enterprise Issues,EI-507,Enterprise access recertification delays,Medium,Open,D. Whitfield,US,Enterprise,Access Management,2026-09-01,2026-08-01
+M-0018,Enterprise Issues,EI-508,Regional control self-assessment coverage gap,Low,Open,L. Farrow,EMEA,Enterprise,Governance & Documentation,2026-11-01,2026-08-01
+M-0019,Internal Audit,IA-2201,IT General Controls Audit - Access Management,High,Open,K. Brooks,US,Enterprise,Access Management,2026-08-31,2026-08-01
+M-0020,Internal Audit,IA-2202,Cloud Security Audit,Medium,In Remediation,M. Chen,EMEA,Technology Infrastructure,Cloud Security,2026-07-15,2026-08-01
+M-0021,Internal Audit,IA-2203,Third Party Risk Management Audit,High,Open,J. Alvarez,US,Enterprise,Third Party Risk,2026-09-30,2026-08-01
+M-0022,Internal Audit,IA-2204,Payments Technology Audit,High,Open,S. Patel,US,Payments,Application Security,2026-10-31,2026-08-01
+M-0023,Internal Audit,IA-2205,Infrastructure Patch Management Audit,Medium,Closed,R. Osei,EMEA,Technology Infrastructure,Patch Management,2026-02-01,2026-08-01
+M-0024,Internal Audit,IA-2206,Data Governance Audit,Low,Open,D. Whitfield,US,Enterprise,Governance & Documentation,2026-11-30,2026-08-01

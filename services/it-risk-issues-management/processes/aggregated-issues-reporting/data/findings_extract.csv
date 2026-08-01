@@ -1,11 +1,11 @@
-Finding_ID,Title,Function,Subteam,Severity,Status,Date_Identified,Target_Remediation_Date,Owner
-F-1001,Missing MFA on privileged accounts - App-2210,Compliance Assessments,F8.3 Application Control Assessments,High,Open,2026-05-12,2026-08-15,J. Alvarez
-F-1002,Unencrypted data at rest - Cloud workload CW-118,Compliance Assessments,F8.2 Cloud Scorecard,High,In Remediation,2026-04-03,2026-07-01,M. Chen
-F-1003,Stale firewall rules on DMZ segment,Compliance Assessments,F8.4 Infrastructure Control Assessments,Medium,Open,2026-06-01,2026-09-01,R. Osei
-F-1004,Excessive access - shared service accounts,Operational Risk,F2.4 Risk and Control Self-Assessments,Medium,Overdue,2026-02-14,2026-05-01,T. Nguyen
-F-1005,Vendor SOC1 exceptions not tracked,Third Party Risk,F4.1 Supplier Control Assessments,High,Open,2026-05-20,2026-08-20,J. Alvarez
-F-1006,Patch compliance gap - legacy servers,Compliance Assessments,F8.4 Infrastructure Control Assessments,Medium,In Remediation,2026-03-11,2026-06-30,R. Osei
-F-1007,Payment gateway logging incomplete,Compliance Assessments,F8.1 Payments Assessments,High,Open,2026-06-10,2026-09-10,S. Patel
-F-1008,Cloud config drift - storage buckets,Compliance Assessments,F8.2 Cloud Scorecard,Low,Closed,2026-01-15,2026-03-01,M. Chen
-F-1009,Application criticality tier undocumented,Operational Risk,F2.4 Risk and Control Self-Assessments,Low,Open,2026-06-18,2026-09-18,T. Nguyen
-F-1010,Third-party penetration test overdue,Third Party Risk,F4.2 Continuous Monitoring,High,Overdue,2026-01-05,2026-04-05,J. Alvarez
+Finding_ID,Title,Function,Subteam,Severity,Status,Date_Identified,Target_Remediation_Date,Owner,Region,Business,Risk_Category
+F-1001,Missing MFA on privileged accounts - App-2210,Compliance Assessments,F8.3 Application Control Assessments,High,Open,2026-05-12,2026-08-15,J. Alvarez,US,Technology Infrastructure,Access Management
+F-1002,Unencrypted data at rest - Cloud workload CW-118,Compliance Assessments,F8.2 Cloud Scorecard,High,In Remediation,2026-04-03,2026-07-01,M. Chen,EMEA,Technology Infrastructure,Data Protection
+F-1003,Stale firewall rules on DMZ segment,Compliance Assessments,F8.4 Infrastructure Control Assessments,Medium,Open,2026-06-01,2026-09-01,R. Osei,US,Technology Infrastructure,Network Security
+F-1004,Excessive access - shared service accounts,Operational Risk,F2.4 Risk and Control Self-Assessments,Medium,Overdue,2026-02-14,2026-05-01,T. Nguyen,US,Enterprise,Access Management
+F-1005,Vendor SOC1 exceptions not tracked,Third Party Risk,F4.1 Supplier Control Assessments,High,Open,2026-05-20,2026-08-20,J. Alvarez,US,Enterprise,Third Party Risk
+F-1006,Patch compliance gap - legacy servers,Compliance Assessments,F8.4 Infrastructure Control Assessments,Medium,In Remediation,2026-03-11,2026-06-30,R. Osei,EMEA,Technology Infrastructure,Patch Management
+F-1007,Payment gateway logging incomplete,Compliance Assessments,F8.1 Payments Assessments,High,Open,2026-06-10,2026-09-10,S. Patel,US,Payments,Application Security
+F-1008,Cloud config drift - storage buckets,Compliance Assessments,F8.2 Cloud Scorecard,Low,Closed,2026-01-15,2026-03-01,M. Chen,EMEA,Technology Infrastructure,Cloud Security
+F-1009,Application criticality tier undocumented,Operational Risk,F2.4 Risk and Control Self-Assessments,Low,Open,2026-06-18,2026-09-18,T. Nguyen,US,Enterprise,Governance & Documentation
+F-1010,Third-party penetration test overdue,Third Party Risk,F4.2 Continuous Monitoring,High,Overdue,2026-01-05,2026-04-05,J. Alvarez,EMEA,Enterprise,Third Party Risk

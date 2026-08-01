@@ -1,7 +1,7 @@
-Audit_Finding_ID,Audit_Name,Rating,Status,Due_Date,Owner
-IA-2201,IT General Controls Audit - Access Management,High,Open,2026-08-31,K. Brooks
-IA-2202,Cloud Security Audit,Medium,In Remediation,2026-07-15,M. Chen
-IA-2203,Third Party Risk Management Audit,High,Open,2026-09-30,J. Alvarez
-IA-2204,Payments Technology Audit,High,Open,2026-10-31,S. Patel
-IA-2205,Infrastructure Patch Management Audit,Medium,Closed,2026-02-01,R. Osei
-IA-2206,Data Governance Audit,Low,Open,2026-11-30,D. Whitfield
+Audit_Finding_ID,Audit_Name,Rating,Status,Due_Date,Owner,Region,Business,Risk_Category
+IA-2201,IT General Controls Audit - Access Management,High,Open,2026-08-31,K. Brooks,US,Enterprise,Access Management
+IA-2202,Cloud Security Audit,Medium,In Remediation,2026-07-15,M. Chen,EMEA,Technology Infrastructure,Cloud Security
+IA-2203,Third Party Risk Management Audit,High,Open,2026-09-30,J. Alvarez,US,Enterprise,Third Party Risk
+IA-2204,Payments Technology Audit,High,Open,2026-10-31,S. Patel,US,Payments,Application Security
+IA-2205,Infrastructure Patch Management Audit,Medium,Closed,2026-02-01,R. Osei,EMEA,Technology Infrastructure,Patch Management
+IA-2206,Data Governance Audit,Low,Open,2026-11-30,D. Whitfield,US,Enterprise,Governance & Documentation
