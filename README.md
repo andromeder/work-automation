@@ -33,6 +33,9 @@ We're going slow and building up the picture in layers:
 - `diagrams/` — Mermaid diagrams (org chart, reference architecture)
   generated from the docs
 - `docs/` — schema reference and methodology notes
+- `artifacts/` — committed HTML snapshots of the published, interactive
+  pages (see [artifacts/README.md](artifacts/README.md)); the live links
+  below are the ones to actually use, this is the backup
 - `INVENTORY.md` — the running high-level list of every known service
   (name, team, status of documentation)
 

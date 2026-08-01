@@ -1,0 +1,1931 @@
+<title>Global IT Risk — Operating Model</title>
+<style>
+  :root {
+    --paper: #f2f3f0;
+    --paper-raised: #fbfbf9;
+    --ink: #1a2130;
+    --muted: #5b6460;
+    --line: #d3d6cf;
+    --line-strong: #b7bbb1;
+    --global: #00838d;
+    --global-soft: #dcf0f1;
+    --regional: #a85a26;
+    --regional-soft: #f4e4d5;
+    --status-good: #1b7a3d;
+    --status-warn: #a9790a;
+    --status-bad: #b23a3a;
+    --shadow: 0 1px 2px rgba(26, 33, 48, 0.06);
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14171a;
+      --paper-raised: #1b1f22;
+      --ink: #e8e7e1;
+      --muted: #9ba39c;
+      --line: #2b3430;
+      --line-strong: #3a443e;
+      --global: #2fa7b0;
+      --global-soft: #17302f;
+      --regional: #c77b3a;
+      --regional-soft: #2f2318;
+      --status-good: #4fbe7c;
+      --status-warn: #e0b04c;
+      --status-bad: #e0685f;
+      --shadow: none;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #14171a;
+    --paper-raised: #1b1f22;
+    --ink: #e8e7e1;
+    --muted: #9ba39c;
+    --line: #2b3430;
+    --line-strong: #3a443e;
+    --global: #2fa7b0;
+    --global-soft: #17302f;
+    --regional: #c77b3a;
+    --regional-soft: #2f2318;
+    --status-good: #4fbe7c;
+    --status-warn: #e0b04c;
+    --status-bad: #e0685f;
+    --shadow: none;
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --paper: #f2f3f0;
+    --paper-raised: #fbfbf9;
+    --ink: #1a2130;
+    --muted: #5b6460;
+    --line: #d3d6cf;
+    --line-strong: #b7bbb1;
+    --global: #00838d;
+    --global-soft: #dcf0f1;
+    --regional: #a85a26;
+    --regional-soft: #f4e4d5;
+    --status-good: #1b7a3d;
+    --status-warn: #a9790a;
+    --status-bad: #b23a3a;
+    --shadow: 0 1px 2px rgba(26, 33, 48, 0.06);
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+  }
+  body {
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--global-soft); }
+
+  h1, h2, h3 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+    font-weight: 400;
+    color: var(--ink);
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .mono {
+    font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  /* ---------- Header ---------- */
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  h1.title { font-size: 34px; line-height: 1.2; max-width: 24ch; }
+  .dek {
+    margin-top: 14px;
+    max-width: 62ch;
+    font-size: 17px;
+    color: var(--muted);
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    align-items: center;
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .meta-row strong { color: var(--ink); font-weight: 600; }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border: 1px solid var(--line-strong);
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  section { margin-top: 56px; }
+  .section-label {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  h2.section-title { font-size: 24px; margin-bottom: 18px; }
+
+  /* ---------- Team overview ---------- */
+  .overview { margin-top: 48px; }
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .stat { display: flex; flex-direction: column; gap: 3px; min-width: 92px; }
+  .stat-num {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ---------- View tabs ---------- */
+  .view-tabs { margin-top: 60px; }
+  .tab-input { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+  .tab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 26px;
+    border-bottom: 1px solid var(--line);
+  }
+  .tab-nav label {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0 0 12px;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.12s ease, border-color 0.12s ease;
+  }
+  .tab-nav label:hover { color: var(--ink); }
+  .tab-input:focus-visible ~ .tab-nav label[for="tab-people"],
+  .tab-input:focus-visible ~ .tab-nav label[for="tab-process"],
+  .tab-input:focus-visible ~ .tab-nav label[for="tab-tech"],
+  .tab-input:focus-visible ~ .tab-nav label[for="tab-ref"] { outline: 2px solid var(--global); outline-offset: 2px; }
+
+  #tab-people:checked ~ .tab-nav label[for="tab-people"],
+  #tab-process:checked ~ .tab-nav label[for="tab-process"],
+  #tab-tech:checked ~ .tab-nav label[for="tab-tech"],
+  #tab-ref:checked ~ .tab-nav label[for="tab-ref"] {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+
+  .panel { display: none; }
+  .panel > section:first-child { margin-top: 32px; }
+  #tab-people:checked ~ .tab-panels .panel-people,
+  #tab-process:checked ~ .tab-panels .panel-process,
+  #tab-tech:checked ~ .tab-panels .panel-tech,
+  #tab-ref:checked ~ .tab-panels .panel-ref {
+    display: block;
+  }
+
+  /* ---------- Empty state (Process / Technology) ---------- */
+  .empty-state {
+    border: 1px dashed var(--line-strong);
+    border-radius: 4px;
+    padding: 28px 26px;
+    background: var(--paper-raised);
+  }
+  .empty-state h3 { font-size: 17px; margin-bottom: 8px; }
+  .empty-state > p { color: var(--muted); font-size: 14px; margin: 0 0 20px; max-width: 60ch; }
+  .field-preview { display: flex; flex-direction: column; gap: 12px; }
+  .field-row { display: flex; gap: 14px; align-items: baseline; font-size: 13.5px; }
+  .field-row .field-code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    color: var(--muted);
+    min-width: 130px;
+    flex-shrink: 0;
+  }
+  .field-row .field-desc { color: var(--ink); }
+
+  /* ---------- Reading note ---------- */
+  .notes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .note {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--global);
+    border-radius: 3px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+  }
+  .note.regional { border-left-color: var(--regional); }
+  .note h3 { font-size: 15px; margin-bottom: 6px; }
+  .note p { margin: 0; font-size: 14px; color: var(--muted); }
+
+  /* ---------- Org chart ---------- */
+  .chart { margin-top: 44px; }
+  .head-wrap { display: flex; flex-direction: column; align-items: center; }
+  .node-head {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: Georgia, serif;
+    font-size: 16px;
+    padding: 14px 30px;
+    border-radius: 3px;
+    text-align: center;
+  }
+  .node-head .role {
+    display: block;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin-bottom: 4px;
+  }
+  .trunk { width: 2px; height: 30px; background: var(--line-strong); }
+
+  .columns {
+    display: flex;
+    gap: 56px;
+    justify-content: center;
+    border-top: 2px solid var(--line-strong);
+    padding-top: 0;
+    position: relative;
+  }
+  .column {
+    position: relative;
+    flex: 1;
+    min-width: 260px;
+    max-width: 380px;
+    padding-top: 28px;
+  }
+  .column::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    width: 2px;
+    height: 28px;
+    background: var(--line-strong);
+    transform: translateX(-1px);
+  }
+  .zone-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .zone-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--global); }
+  .column.regional .zone-dot { background: var(--regional); }
+  .zone-label.global-c { color: var(--global); }
+  .zone-label.regional-c { color: var(--regional); }
+
+  .fn-list { display: flex; flex-direction: column; gap: 10px; }
+  .fn-block {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    box-shadow: var(--shadow);
+  }
+  .fn-block[open] { padding-bottom: 8px; }
+  .fn-card {
+    padding: 11px 14px;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    cursor: pointer;
+    list-style: none;
+  }
+  .fn-card::-webkit-details-marker { display: none; }
+  .fn-code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    color: var(--global);
+    flex-shrink: 0;
+    min-width: 22px;
+  }
+  .column.regional .fn-code { color: var(--regional); }
+  .fn-body { min-width: 0; flex: 1; }
+  .fn-name { font-size: 14.5px; font-weight: 600; }
+  .fn-scope { display: block; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .chevron {
+    font-size: 13px;
+    color: var(--muted);
+    transition: transform 0.15s ease;
+    flex-shrink: 0;
+    align-self: center;
+  }
+  .fn-block[open] > .fn-card .chevron { transform: rotate(90deg); }
+
+  .sub-list { padding: 2px 14px 0; }
+  .sub-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 7px 0 7px 16px;
+    margin-left: 11px;
+    border-left: 2px solid var(--line);
+    font-size: 13px;
+  }
+  .sub-row:last-child { border-left-color: var(--line); }
+  .sub-code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10.5px;
+    color: var(--muted);
+    min-width: 30px;
+    flex-shrink: 0;
+  }
+  .xlink {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    color: var(--regional);
+    border: 1px solid var(--regional);
+    border-radius: 100px;
+    padding: 1px 6px;
+    margin-left: 6px;
+    cursor: help;
+  }
+  .column.regional .xlink { color: var(--global); border-color: var(--global); }
+
+  .matrix-note {
+    margin-top: 14px;
+    border: 1px dashed var(--line-strong);
+    border-radius: 3px;
+    padding: 11px 14px;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+
+  /* ---------- Matrix table ---------- */
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .matrix th, .matrix td {
+    border-bottom: 1px solid var(--line);
+    padding: 10px 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .matrix thead th {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 2px solid var(--line-strong);
+  }
+  .matrix thead th.region {
+    color: var(--regional);
+  }
+  .matrix thead th.region::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--regional);
+    margin-right: 6px;
+  }
+  .matrix td.rowhead { font-weight: 600; white-space: nowrap; }
+  .matrix td.rowhead .fn-code { margin-right: 8px; }
+  .tbd { color: var(--muted); font-style: italic; font-size: 13px; }
+
+  /* ---------- Frameworks table ---------- */
+  .fw thead th {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 2px solid var(--line-strong);
+  }
+  .fw td, .fw th { border-bottom: 1px solid var(--line); padding: 10px 14px; font-size: 13.5px; }
+  .fw td.fn-tag-cell { white-space: nowrap; }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: var(--global-soft);
+    color: var(--global);
+  }
+  .tag.regional { background: var(--regional-soft); color: var(--regional); }
+  .fw .framework { font-weight: 600; }
+  .fw .issuer { display: block; font-size: 12px; color: var(--muted); margin-top: 1px; }
+  .fw .relevance { color: var(--muted); }
+
+  .callout {
+    margin-top: 18px;
+    border: 1px dashed var(--line-strong);
+    border-radius: 3px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  .callout strong { color: var(--ink); }
+
+  .qlist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .qlist li {
+    display: flex;
+    gap: 10px;
+    font-size: 14.5px;
+    color: var(--ink);
+    align-items: flex-start;
+  }
+  .qlist li::before {
+    content: "";
+    flex-shrink: 0;
+    width: 13px;
+    height: 13px;
+    margin-top: 3px;
+    border: 1.5px solid var(--line-strong);
+    border-radius: 50%;
+  }
+
+  /* ---------- Consumers ---------- */
+  .consumer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 14px;
+  }
+  .consumer-group {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+  .consumer-group h3 {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .consumer-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .consumer-tag {
+    font-size: 12.5px;
+    padding: 3px 9px;
+    border: 1px solid var(--line-strong);
+    border-radius: 100px;
+    color: var(--ink);
+  }
+
+  /* ---------- Reference architecture diagram ---------- */
+  .arch-diagram { position: relative; display: flex; gap: 30px; margin-top: 26px; align-items: flex-start; }
+  .arch-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+  .arch-col { flex: 1; min-width: 0; position: relative; z-index: 1; display: flex; flex-direction: column; gap: 22px; }
+  .arch-col-label {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .arch-col-label.global-c { color: var(--global); }
+  .arch-col-label.regional-c { color: var(--regional); }
+  .arch-group { display: flex; flex-direction: column; gap: 8px; }
+  .arch-group-title {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .arch-node {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 9px 12px;
+    font-size: 13px;
+    box-shadow: var(--shadow);
+    transition: border-color 0.15s ease;
+  }
+  .arch-node.unmapped { border-style: dashed; color: var(--muted); }
+  .arch-node:hover { border-color: var(--ink); }
+  .arch-node.svc-expand { padding: 0; }
+  .fcode {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    color: var(--muted);
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    padding: 1px 5px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .fcode.open { font-style: italic; border-style: dashed; }
+
+  .edge { fill: none; stroke: var(--line-strong); stroke-width: 1.5; stroke-dasharray: 4 4; opacity: 0; transition: opacity 0.15s ease, stroke-width 0.15s ease, stroke 0.15s ease; }
+  .edge.confirmed { stroke: var(--global); stroke-dasharray: none; }
+  .edge.dim { opacity: 0; }
+  .edge.highlight { opacity: 1; stroke-width: 2.5; stroke: var(--regional); }
+  .edge.highlight.confirmed { stroke: var(--global); }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 16px; font-size: 12.5px; color: var(--muted); align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 8px; }
+  .legend-swatch { width: 24px; height: 0; border-top: 2px solid var(--global); }
+  .legend-swatch.hyp { border-top: 2px dashed var(--line-strong); }
+  .legend-swatch.unmapped { width: 14px; height: 14px; border: 1px dashed var(--line-strong); border-radius: 3px; }
+
+  .arch-stats { display: flex; flex-wrap: wrap; gap: 26px; margin: 22px 0 4px; }
+
+  /* ---------- RAG ---------- */
+  .rag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 100px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .rag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .rag-green { color: var(--status-good); background: color-mix(in srgb, var(--status-good) 14%, transparent); }
+  .rag-green::before { background: var(--status-good); }
+  .rag-amber { color: var(--status-warn); background: color-mix(in srgb, var(--status-warn) 16%, transparent); }
+  .rag-amber::before { background: var(--status-warn); }
+  .rag-red { color: var(--status-bad); background: color-mix(in srgb, var(--status-bad) 14%, transparent); }
+  .rag-red::before { background: var(--status-bad); }
+
+  .rag-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .rag-dot.rag-green { background: var(--status-good); }
+  .rag-dot.rag-amber { background: var(--status-warn); }
+  .rag-dot.rag-red { background: var(--status-bad); }
+
+  /* ---------- Service-detail prototype ---------- */
+  .svc-proto-note {
+    margin-top: 14px;
+    border: 1px dashed var(--line-strong);
+    border-radius: 3px;
+    padding: 11px 14px;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+  .svc-summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 12px;
+  }
+  .svc-summary::-webkit-details-marker { display: none; }
+  .svc-summary .svc-name { flex: 1; min-width: 0; font-size: 13px; }
+  .svc-expand[open] > .svc-summary .chevron { transform: rotate(90deg); }
+  .svc-expand[open] { padding-bottom: 12px; }
+
+  .svc-detail { padding: 2px 12px 0; }
+  .svc-badge {
+    display: inline-block;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--line-strong);
+    border-radius: 100px;
+    padding: 2px 8px;
+    margin-bottom: 10px;
+  }
+  .svc-desc { font-size: 12.5px; color: var(--ink); line-height: 1.55; margin: 0 0 12px; }
+  .svc-owner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .svc-visit-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--global);
+    text-decoration: none;
+  }
+  .svc-visit-link:hover { color: var(--ink); }
+  .svc-visit-link .arrow { transition: transform 0.15s ease; }
+  .svc-visit-link:hover .arrow { transform: translateX(2px); }
+
+  .svc-sub {
+    border-top: 1px solid var(--line);
+    padding-top: 2px;
+    margin-top: 4px;
+  }
+  .svc-sub summary {
+    list-style: none;
+    cursor: pointer;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 9px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .svc-sub-label { flex: 1; }
+  .svc-sub summary::-webkit-details-marker { display: none; }
+  .svc-sub[open] > summary { color: var(--ink); }
+  .svc-sub[open] > summary .chevron { transform: rotate(90deg); }
+  .svc-sub-body { padding: 2px 0 12px; }
+
+  .kpi-subgroup-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    margin: 12px 0 4px;
+  }
+  .kpi-subgroup-head:first-child { margin-top: 0; }
+  .kpi-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .kpi-row:last-child { border-bottom: none; }
+  .kpi-name { font-size: 12.5px; color: var(--ink); }
+  .kpi-target { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .kpi-figure { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+  .kpi-value { font-family: Georgia, serif; font-size: 15px; font-variant-numeric: tabular-nums; }
+
+  .fin-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 12.5px;
+  }
+  .fin-row:last-child { border-bottom: none; }
+  .fin-row .fin-value { font-family: Georgia, serif; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+  .svc-sample-tag {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  footer {
+    margin-top: 72px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 680px) {
+    h1.title { font-size: 27px; }
+    .notes { grid-template-columns: 1fr; }
+    .columns { flex-direction: column; align-items: center; border-top: none; }
+    .column { padding-top: 0; max-width: 420px; width: 100%; }
+    .column::before { display: none; }
+    .trunk { display: none; }
+    .tab-nav { gap: 6px 18px; }
+    .arch-diagram { flex-direction: column; }
+  }
+</style>
+
+<div class="page">
+
+  <header>
+    <div class="eyebrow">Global IT Risk</div>
+    <h1 class="title">Global IT Risk — Operating Model</h1>
+    <p class="dek">
+      A living map of who does the work, how, and on what — organized as
+      People, Process, and Technology, with a Reference Material section
+      for the standards we're checking completeness against.
+    </p>
+    <div class="meta-row">
+      <span class="pill">Draft</span>
+      <span>4 views: People · Process · Technology · Reference Material</span>
+      <span>Reviewed 1 Aug 2026</span>
+    </div>
+  </header>
+
+  <section class="overview">
+    <div class="section-label">Team overview</div>
+    <h2 class="section-title">One head, eight functions, two operating axes</h2>
+    <p class="dek" style="margin-bottom:0;">
+      Global IT Risk is led by a single Head overseeing eight functions.
+      Six are global — Governance, Operational Risk, Shared Services,
+      Third Party Risk, Regulatory/Audit/Issues Management, and Compliance
+      Assessments — each setting a standard or running a program that
+      applies everywhere. Two are regional — US IT Risk and EMEA IT Risk —
+      executing those programs in-market, adapting for local regulatory
+      requirements. Together the eight functions break into 30 subteams,
+      the level services and their processes will attach to next.
+    </p>
+    <div class="stat-row">
+      <div class="stat"><span class="stat-num">1</span><span class="stat-label">Head</span></div>
+      <div class="stat"><span class="stat-num">6</span><span class="stat-label">Global functions</span></div>
+      <div class="stat"><span class="stat-num">2</span><span class="stat-label">Regional functions</span></div>
+      <div class="stat"><span class="stat-num">30</span><span class="stat-label">Subteams</span></div>
+      <div class="stat"><span class="stat-num">2</span><span class="stat-label">Regions</span></div>
+    </div>
+  </section>
+
+  <div class="view-tabs">
+    <input type="radio" name="view" id="tab-people" class="tab-input" checked>
+    <input type="radio" name="view" id="tab-process" class="tab-input">
+    <input type="radio" name="view" id="tab-tech" class="tab-input">
+    <input type="radio" name="view" id="tab-ref" class="tab-input">
+
+    <nav class="tab-nav">
+      <label for="tab-people">People</label>
+      <label for="tab-process">Process</label>
+      <label for="tab-tech">Technology</label>
+      <label for="tab-ref">Reference Material</label>
+    </nav>
+
+    <div class="tab-panels">
+
+      <div class="panel panel-people">
+
+        <section>
+          <div class="section-label">How to read this</div>
+          <h2 class="section-title">One org, two axes</h2>
+          <div class="notes">
+            <div class="note">
+              <h3>Global functions define the &ldquo;what&rdquo;</h3>
+              <p>Governance, Operational Risk, Shared Services, Third Party Risk,
+              Regulatory/Audit/Issues Management, and Compliance Assessments each
+              set a standard or run a program that applies everywhere, regardless
+              of region.</p>
+            </div>
+            <div class="note regional">
+              <h3>Regional functions own the &ldquo;where&rdquo;</h3>
+              <p>US IT Risk and EMEA IT Risk execute those six programs in‑market,
+              adapting for local regulatory requirements, and are accountable for
+              the result there.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="chart">
+          <div class="section-label">Org chart · Layers 1–2</div>
+          <h2 class="section-title">Head, Global IT Risk</h2>
+
+          <div class="head-wrap">
+            <div class="node-head">
+              <span class="role">Lead</span>
+              Head, Global IT Risk
+            </div>
+            <div class="trunk"></div>
+          </div>
+
+          <div class="columns">
+            <div class="column global">
+              <div class="zone-label global-c"><span class="zone-dot"></span>Global functions — horizontal</div>
+              <div class="fn-list">
+                <details class="fn-block">
+                  <summary class="fn-card"><span class="fn-code">F1</span><div class="fn-body"><span class="fn-name">Governance</span><span class="fn-scope">Policy, standards, risk governance framework</span></div><span class="chevron">›</span></summary>
+                  <div class="sub-list">
+                    <div class="sub-row"><span class="sub-code">F1.1</span>Policy and Procedure Management</div>
+                    <div class="sub-row"><span class="sub-code">F1.2</span>Domain Governance</div>
+                    <div class="sub-row"><span class="sub-code">F1.3</span>Service Management</div>
+                  </div>
+                </details>
+                <details class="fn-block">
+                  <summary class="fn-card"><span class="fn-code">F2</span><div class="fn-body"><span class="fn-name">Operational Risk</span><span class="fn-scope">Identifies &amp; manages IT operational risk globally</span></div><span class="chevron">›</span></summary>
+                  <div class="sub-list">
+                    <div class="sub-row"><span class="sub-code">F2.1</span>Operational Risk Reporting</div>
+                    <div class="sub-row"><span class="sub-code">F2.2</span>Operational Risk Events</div>
+                    <div class="sub-row"><span class="sub-code">F2.3</span>Environmental Scanning</div>
+                    <div class="sub-row"><span class="sub-code">F2.4</span>Risk and Control Self-Assessments</div>
+                  </div>
+                </details>
+                <details class="fn-block">
+                  <summary class="fn-card"><span class="fn-code">F3</span><div class="fn-body"><span class="fn-name">Shared Services</span><span class="fn-scope">Common tooling/capabilities used across functions</span></div><span class="chevron">›</span></summary>
+                  <div class="sub-list">
+                    <div class="sub-row"><span class="sub-code">F3.1</span>Control Testing</div>
+                    <div class="sub-row"><span class="sub-code">F3.2</span>Reporting</div>
+                    <div class="sub-row"><span class="sub-code">F3.3</span>Data &amp; Automation</div>
+                    <div class="sub-row"><span class="sub-code">F3.4</span>Metrics Management</div>
+                    <div class="sub-row"><span class="sub-code">F3.5</span>Risk and Control Advisory</div>
+                  </div>
+                </details>
+                <details class="fn-block">
+                  <summary class="fn-card"><span class="fn-code">F4</span><div class="fn-body"><span class="fn-name">Third Party Risk</span><span class="fn-scope">Risk management over vendors &amp; third parties</span></div><span class="chevron">›</span></summary>
+                  <div class="sub-list">
+                    <div class="sub-row"><span class="sub-code">F4.1</span>Supplier Control Assessments</div>
+                    <div class="sub-row"><span class="sub-code">F4.2</span>Continuous Monitoring</div>
+                    <div class="sub-row"><span class="sub-code">F4.3</span>Advisory Services</div>
+                    <div class="sub-row"><span class="sub-code">F4.4</span>Shared Services Responsibility Assessment<span class="xlink" title="Hypothesis: this subteam likely consumes something from F3 Shared Services">⇄ F3</span></div>
+                  </div>
+                </details>
+                <details class="fn-block">
+                  <summary class="fn-card"><span class="fn-code">F5</span><div class="fn-body"><span class="fn-name">Regulatory, Audit &amp; Issues Mgmt</span><span class="fn-scope">Exams, audit engagement, issue remediation</span></div><span class="chevron">›</span></summary>
+                  <div class="sub-list">
+                    <div class="sub-row"><span class="sub-code">F5.1</span>Request Intake</div>
+                    <div class="sub-row"><span class="sub-code">F5.2</span>Audit &amp; Reg Prep</div>
+                    <div class="sub-row"><span class="sub-code">F5.3</span>Reg Response</div>
+                    <div class="sub-row"><span class="sub-code">F5.4</span>Client Due Diligence</div>
+                  </div>
+                </details>
+                <details class="fn-block">
+                  <summary class="fn-card"><span class="fn-code">F8</span><div class="fn-body"><span class="fn-name">Compliance Assessments</span><span class="fn-scope">Assesses adherence to policy &amp; regulatory requirements</span></div><span class="chevron">›</span></summary>
+                  <div class="sub-list">
+                    <div class="sub-row"><span class="sub-code">F8.1</span>Payments Assessments</div>
+                    <div class="sub-row"><span class="sub-code">F8.2</span>Cloud Scorecard</div>
+                    <div class="sub-row"><span class="sub-code">F8.3</span>Application Control Assessments</div>
+                    <div class="sub-row"><span class="sub-code">F8.4</span>Infrastructure Control Assessments</div>
+                  </div>
+                </details>
+              </div>
+            </div>
+            <div class="column regional">
+              <div class="zone-label regional-c"><span class="zone-dot"></span>Regional functions — vertical</div>
+              <div class="fn-list">
+                <details class="fn-block">
+                  <summary class="fn-card"><span class="fn-code">F6</span><div class="fn-body"><span class="fn-name">US IT Risk</span><span class="fn-scope">Executes &amp; oversees the global program in the US</span></div><span class="chevron">›</span></summary>
+                  <div class="sub-list">
+                    <div class="sub-row"><span class="sub-code">F6.1</span>Local Assessments<span class="xlink" title="Hypothesis: executes F8 Compliance Assessments' assessment types in-region">⇄ F8</span></div>
+                    <div class="sub-row"><span class="sub-code">F6.2</span>Regional Governance<span class="xlink" title="Hypothesis: applies F1 Governance policy/standards in-region">⇄ F1</span></div>
+                    <div class="sub-row"><span class="sub-code">F6.3</span>Regional Issues Management<span class="xlink" title="Hypothesis: feeds/consumes F5 Regulatory, Audit &amp; Issues Management">⇄ F5</span></div>
+                  </div>
+                </details>
+                <details class="fn-block">
+                  <summary class="fn-card"><span class="fn-code">F7</span><div class="fn-body"><span class="fn-name">EMEA IT Risk</span><span class="fn-scope">Executes &amp; oversees the global program in EMEA</span></div><span class="chevron">›</span></summary>
+                  <div class="sub-list">
+                    <div class="sub-row"><span class="sub-code">F7.1</span>Local Assessments<span class="xlink" title="Hypothesis: executes F8 Compliance Assessments' assessment types in-region">⇄ F8</span></div>
+                    <div class="sub-row"><span class="sub-code">F7.2</span>Regional Governance<span class="xlink" title="Hypothesis: applies F1 Governance policy/standards in-region">⇄ F1</span></div>
+                    <div class="sub-row"><span class="sub-code">F7.3</span>Regional Issues Management<span class="xlink" title="Hypothesis: feeds/consumes F5 Regulatory, Audit &amp; Issues Management">⇄ F5</span></div>
+                  </div>
+                </details>
+              </div>
+              <div class="matrix-note">Hover the ⇄ tags for the cross-links implied by subteam names — all draft hypotheses, not yet confirmed. F2 Operational Risk and F3 Shared Services have no obviously named regional counterpart; see open questions below.</div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="section-label">Interdependency</div>
+          <h2 class="section-title">Function × region matrix</h2>
+          <p class="dek" style="margin-bottom:20px;">Where the real data and requirement dependencies live. Cells fill in as
+          the corresponding services are documented — the org chart shows who
+          exists, this shows how they depend on each other.</p>
+          <div class="table-scroll">
+            <table class="matrix">
+              <thead>
+                <tr>
+                  <th>Global function</th>
+                  <th class="region">US IT Risk</th>
+                  <th class="region">EMEA IT Risk</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="rowhead"><span class="fn-code">F1</span>Governance</td><td class="tbd">hypothesis · F6.2</td><td class="tbd">hypothesis · F7.2</td></tr>
+                <tr><td class="rowhead"><span class="fn-code">F2</span>Operational Risk</td><td class="tbd">tbd — no named counterpart</td><td class="tbd">tbd — no named counterpart</td></tr>
+                <tr><td class="rowhead"><span class="fn-code">F3</span>Shared Services</td><td class="tbd">tbd — no named counterpart</td><td class="tbd">tbd — no named counterpart</td></tr>
+                <tr><td class="rowhead"><span class="fn-code">F4</span>Third Party Risk</td><td class="tbd">tbd</td><td class="tbd">tbd</td></tr>
+                <tr><td class="rowhead"><span class="fn-code">F5</span>Regulatory, Audit &amp; Issues Mgmt</td><td class="tbd">hypothesis · F6.3</td><td class="tbd">hypothesis · F7.3</td></tr>
+                <tr><td class="rowhead"><span class="fn-code">F8</span>Compliance Assessments</td><td class="tbd">hypothesis · F6.1</td><td class="tbd">hypothesis · F7.1</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <div class="section-label">Who we serve</div>
+          <h2 class="section-title">Consumers</h2>
+          <p class="dek" style="margin-bottom:20px;">
+            Same &ldquo;who&rdquo; lens as the org chart above, facing
+            outward. 21 consumers grouped for readability — a proposed
+            read of the list, not a confirmed classification.
+          </p>
+          <div class="consumer-grid">
+            <div class="consumer-group">
+              <h3>Governance &amp; Leadership</h3>
+              <div class="consumer-tags">
+                <span class="consumer-tag">Committees</span>
+                <span class="consumer-tag">T&amp;O Group Head</span>
+                <span class="consumer-tag">Senior Leadership</span>
+                <span class="consumer-tag">Domain Owners</span>
+                <span class="consumer-tag">Team Managers</span>
+              </div>
+            </div>
+            <div class="consumer-group">
+              <h3>Embedded Risk &amp; Advisory</h3>
+              <div class="consumer-tags">
+                <span class="consumer-tag">Risk Leads &amp; Embedded Risk Teams</span>
+                <span class="consumer-tag">Application SMEs</span>
+                <span class="consumer-tag">Solution Architects</span>
+              </div>
+            </div>
+            <div class="consumer-group">
+              <h3>Business &amp; Application Ownership</h3>
+              <div class="consumer-tags">
+                <span class="consumer-tag">Functions</span>
+                <span class="consumer-tag">LOBs</span>
+                <span class="consumer-tag">Applications</span>
+                <span class="consumer-tag">Legal Entities</span>
+                <span class="consumer-tag">Application Custodians</span>
+                <span class="consumer-tag">Engagement Owners</span>
+              </div>
+            </div>
+            <div class="consumer-group">
+              <h3>Third Party &amp; Supplier</h3>
+              <div class="consumer-tags">
+                <span class="consumer-tag">Supplier Management Offices</span>
+              </div>
+            </div>
+            <div class="consumer-group">
+              <h3>Security Leadership</h3>
+              <div class="consumer-tags">
+                <span class="consumer-tag">CISO</span>
+                <span class="consumer-tag">CSO</span>
+              </div>
+            </div>
+            <div class="consumer-group">
+              <h3>Assurance, Audit &amp; Regulatory</h3>
+              <div class="consumer-tags">
+                <span class="consumer-tag">Internal Audit</span>
+                <span class="consumer-tag">External Audit</span>
+                <span class="consumer-tag">Regulators</span>
+              </div>
+            </div>
+            <div class="consumer-group">
+              <h3>Internal Technology Partners</h3>
+              <div class="consumer-tags">
+                <span class="consumer-tag">Internal GS Teams</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="section-label">Before layer 3</div>
+          <h2 class="section-title">Open questions</h2>
+          <ul class="qlist">
+            <li>Are US and EMEA the only regions in scope, or does a global function cover APAC/LatAm directly for now?</li>
+            <li>Do the four hypothesis links above (⇄ tags) hold up once services are documented?</li>
+            <li>F2 Operational Risk and F3 Shared Services have no named regional subteam — no in-region execution, or folded into an existing regional subteam without it showing in the name?</li>
+            <li>Who are the actual leads for F1–F8 and the 30 subteams — needed for the next layer of the chart?</li>
+            <li>Which function or subteam should we document services for first?</li>
+          </ul>
+        </section>
+
+      </div>
+
+      <div class="panel panel-process">
+
+        <section>
+          <div class="section-label">Process</div>
+          <h2 class="section-title">Consumers, Products &amp; Services</h2>
+          <p class="dek" style="margin-bottom:0;">
+            A Consumer receives a Product; a Product is produced by a
+            Service. This is the reference architecture's first three
+            layers — Services are a coarser grain than the per-subteam
+            <span class="mono">service</span> entries Layer 3 will add
+            later (see the naming note below). Click any Service to see
+            its candidate owning function/subteam (the
+            <span class="mono">F.*</span> reference key from the People
+            tab), plus a RAG dot for status. Consumers and Products are
+            plain boxes with nothing underneath.
+          </p>
+          <div class="arch-stats">
+            <div class="stat"><span class="stat-num">7</span><span class="stat-label">Consumer groups</span></div>
+            <div class="stat"><span class="stat-num">16</span><span class="stat-label">Products</span></div>
+            <div class="stat"><span class="stat-num">17</span><span class="stat-label">Services</span></div>
+            <div class="stat"><span class="stat-num">3</span><span class="stat-label">Confirmed links</span></div>
+            <div class="stat"><span class="stat-num">37</span><span class="stat-label">Hypothesis links</span></div>
+          </div>
+        </section>
+
+        <section>
+          <div class="section-label">Interconnection</div>
+          <h2 class="section-title">Consumer × Product × Service map</h2>
+          <p class="dek" style="margin-bottom:0;">Hover any node to trace its links across all three columns.</p>
+          <div class="legend">
+            <div class="legend-item"><span class="legend-swatch"></span>Confirmed — name match</div>
+            <div class="legend-item"><span class="legend-swatch hyp"></span>Hypothesis — needs confirming</div>
+            <div class="legend-item"><span class="legend-swatch unmapped"></span>No link yet</div>
+            <div class="legend-item"><span class="rag-dot rag-green"></span>Service status (click to expand)</div>
+          </div>
+
+          <div class="arch-diagram" id="archDiagram">
+            <svg class="arch-lines" id="archLines"></svg>
+
+            <div class="arch-col">
+              <div class="arch-col-label">Consumers</div>
+              <div class="arch-group">
+                <div class="arch-node" data-id="c-gov">Governance &amp; Leadership</div>
+                <div class="arch-node" data-id="c-era">Embedded Risk &amp; Advisory</div>
+                <div class="arch-node" data-id="c-bao">Business &amp; Application Ownership</div>
+                <div class="arch-node" data-id="c-tps">Third Party &amp; Supplier</div>
+                <div class="arch-node" data-id="c-sec">Security Leadership</div>
+                <div class="arch-node" data-id="c-aar">Assurance, Audit &amp; Regulatory</div>
+                <div class="arch-node" data-id="c-itp">Internal Technology Partners</div>
+              </div>
+            </div>
+
+            <div class="arch-col">
+              <div class="arch-col-label global-c">Products</div>
+
+              <div class="arch-group">
+                <div class="arch-group-title">Risk Assessments</div>
+                <div class="arch-node" data-id="p-burcsa">BU RCSA</div>
+                <div class="arch-node" data-id="p-prcsa">Process RCSA</div>
+                <div class="arch-node" data-id="p-acs">Application Criticality Score</div>
+                <div class="arch-node" data-id="p-beie">Business Environment &amp; Impact Evaluations</div>
+                <div class="arch-node" data-id="p-pea">Process Environment Assessment</div>
+                <div class="arch-node" data-id="p-orp">Operational Risk Profile</div>
+              </div>
+
+              <div class="arch-group">
+                <div class="arch-group-title">Control Assessments</div>
+                <div class="arch-node" data-id="p-aca">Application Control Assessment</div>
+                <div class="arch-node" data-id="p-ica">Infrastructure Control Assessment</div>
+                <div class="arch-node unmapped" data-id="p-pay">Payments Assessments</div>
+                <div class="arch-node" data-id="p-cloud">Cloud Scorecard</div>
+                <div class="arch-node" data-id="p-soc1">SOC1 Assessment</div>
+                <div class="arch-node" data-id="p-nist">NIST Cybersecurity Maturity Assessment</div>
+              </div>
+
+              <div class="arch-group">
+                <div class="arch-group-title">Risk Reporting &amp; Documentation</div>
+                <div class="arch-node unmapped" data-id="p-cjr">Crown Jewel Report</div>
+                <div class="arch-node" data-id="p-dash">IT Metrics Dashboard</div>
+                <div class="arch-node" data-id="p-itrr">IT Risk Reports</div>
+                <div class="arch-node" data-id="p-itrd">IT Risk Documentation</div>
+              </div>
+            </div>
+
+            <div class="arch-col">
+              <div class="arch-col-label regional-c">Services</div>
+
+              <div class="arch-group">
+                <div class="arch-group-title">Assessment Delivery</div>
+                <details class="arch-node svc-expand">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-aca">Application Control Assessment</span>
+                    <span class="rag-dot rag-green" title="Green"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode">F8.3</span></div>
+                    <p class="svc-desc">The standardized control assessment applied to in-scope applications — produces the Application Control Assessment product and feeds the Application Criticality Score. Runs a fixed-cycle testing calendar so every application is reassessed on schedule rather than on request.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to complete assessment</span><span class="kpi-target">Target ≤ 15 business days</span></div><div class="kpi-figure"><span class="kpi-value">12.1d</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Rework rate (evidence gaps)</span><span class="kpi-target">Target ≤ 8%</span></div><div class="kpi-figure"><span class="kpi-value">5%</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Assessment coverage (on schedule)</span><span class="kpi-target">Target ≥ 95%</span></div><div class="kpi-figure"><span class="kpi-value">97%</span><span class="rag rag-green">Green</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">6 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$1.1M</span></div>
+                        <div class="fin-row"><span>Cost per assessment</span><span class="fin-value">~$950</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">−2%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+
+                <details class="arch-node svc-expand">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-cloud">Cloud Scorecard</span>
+                    <span class="rag-dot rag-amber" title="Amber"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode">F8.2</span></div>
+                    <p class="svc-desc">Produces the recurring Cloud Scorecard by pulling control-posture signals from cloud-hosted workloads into a single scored view per application/domain. Newer than the on-prem assessment programs, so scope and automation are still maturing.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-amber">Amber</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to publish scorecard refresh</span><span class="kpi-target">Target ≤ 10 business days</span></div><div class="kpi-figure"><span class="kpi-value">13d</span><span class="rag rag-amber">Amber</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Data quality exceptions (manual fix)</span><span class="kpi-target">Target ≤ 12%</span></div><div class="kpi-figure"><span class="kpi-value">19%</span><span class="rag rag-amber">Amber</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Cloud workload coverage</span><span class="kpi-target">Target ≥ 90%</span></div><div class="kpi-figure"><span class="kpi-value">88%</span><span class="rag rag-amber">Amber</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-amber">Amber</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">3 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$520K</span></div>
+                        <div class="fin-row"><span>Cost per scorecard refresh</span><span class="fin-value">~$310</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">+6%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+
+                <details class="arch-node svc-expand">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-ica">Infrastructure Control Assessment Service</span>
+                    <span class="rag-dot rag-green" title="Green"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode">F8.4</span></div>
+                    <p class="svc-desc">The infrastructure counterpart to Application Control Assessment — assesses servers, network, and platform control environments on a fixed cycle, producing the Infrastructure Control Assessment product.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to complete assessment</span><span class="kpi-target">Target ≤ 15 business days</span></div><div class="kpi-figure"><span class="kpi-value">13.4d</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Rework rate</span><span class="kpi-target">Target ≤ 8%</span></div><div class="kpi-figure"><span class="kpi-value">6%</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Assessment coverage</span><span class="kpi-target">Target ≥ 95%</span></div><div class="kpi-figure"><span class="kpi-value">96%</span><span class="rag rag-green">Green</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">5 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$940K</span></div>
+                        <div class="fin-row"><span>Cost per assessment</span><span class="fin-value">~$1,020</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">−1%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+
+                <details class="arch-node svc-expand">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-acaica">ACA / ICA Support Request Service</span>
+                    <span class="rag-dot rag-amber" title="Amber"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode">F8</span></div>
+                    <p class="svc-desc">The intake front door for both the Application and Infrastructure Control Assessment programs — logs requests, validates scoping, and routes work so the assessment teams don't absorb their own scheduling overhead.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-amber">Amber</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to triage request</span><span class="kpi-target">Target ≤ 3 business days</span></div><div class="kpi-figure"><span class="kpi-value">4.1d</span><span class="rag rag-amber">Amber</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Requests returned (missing scoping info)</span><span class="kpi-target">Target ≤ 10%</span></div><div class="kpi-figure"><span class="kpi-value">15%</span><span class="rag rag-amber">Amber</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Backlog aging (past SLA)</span><span class="kpi-target">Target ≤ 5%</span></div><div class="kpi-figure"><span class="kpi-value">6%</span><span class="rag rag-amber">Amber</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-amber">Amber</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">2 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$310K</span></div>
+                        <div class="fin-row"><span>Cost per request triaged</span><span class="fin-value">~$65</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">+9%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+              </div>
+
+              <div class="arch-group">
+                <div class="arch-group-title">Advisory &amp; Consultation</div>
+                <details class="arch-node svc-expand">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-itcs">IT Controls Support (Control Advisory)</span>
+                    <span class="rag-dot rag-green" title="Green"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode">F3.5</span></div>
+                    <p class="svc-desc">Consultative control-design and interpretation support for teams preparing for or responding to an assessment — the &ldquo;ask an expert&rdquo; layer alongside the assessment services, not an assessment service itself.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to first response</span><span class="kpi-target">Target ≤ 2 business days</span></div><div class="kpi-figure"><span class="kpi-value">1.6d</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Advisory rework rate (guidance reversed)</span><span class="kpi-target">Target ≤ 8%</span></div><div class="kpi-figure"><span class="kpi-value">5%</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Requester satisfaction (CSAT)</span><span class="kpi-target">Target ≥ 90%</span></div><div class="kpi-figure"><span class="kpi-value">93%</span><span class="rag rag-green">Green</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">4 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$680K</span></div>
+                        <div class="fin-row"><span>Cost per advisory request</span><span class="fin-value">~$140</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">−3%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+
+                <details class="arch-node svc-expand">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-cts">Cyber and Technology Support Service</span>
+                    <span class="rag-dot rag-amber" title="Amber"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode open">open</span></div>
+                    <p class="svc-desc">General-purpose cyber and technology risk consultation for questions that don't map to one of the named assessment/advisory services. The scope is broad by design, which is also its main operating challenge — see the open question on ownership.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-amber">Amber</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to first response</span><span class="kpi-target">Target ≤ 3 business days</span></div><div class="kpi-figure"><span class="kpi-value">4.3d</span><span class="rag rag-amber">Amber</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Requests re-routed (scope mismatch)</span><span class="kpi-target">Target ≤ 12%</span></div><div class="kpi-figure"><span class="kpi-value">18%</span><span class="rag rag-amber">Amber</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Requester satisfaction (CSAT)</span><span class="kpi-target">Target ≥ 85%</span></div><div class="kpi-figure"><span class="kpi-value">82%</span><span class="rag rag-amber">Amber</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-amber">Amber</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">3.5 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$610K</span></div>
+                        <div class="fin-row"><span>Cost per request</span><span class="fin-value">~$205</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">+7%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+
+                <details class="arch-node svc-expand">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-orec">Operational Risk Event Consultation Service</span>
+                    <span class="rag-dot rag-green" title="Green"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode">F2.2</span></div>
+                    <p class="svc-desc">Advises business and technology teams through the operational risk event process — classifying an event, scoping its impact, and determining whether it needs to be reported — feeding the Operational Risk Profile product.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to initial consultation</span><span class="kpi-target">Target ≤ 2 business days</span></div><div class="kpi-figure"><span class="kpi-value">1.8d</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Event misclassification rate</span><span class="kpi-target">Target ≤ 10%</span></div><div class="kpi-figure"><span class="kpi-value">7%</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Consultations completed within SLA</span><span class="kpi-target">Target ≥ 90%</span></div><div class="kpi-figure"><span class="kpi-value">94%</span><span class="rag rag-green">Green</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">3 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$520K</span></div>
+                        <div class="fin-row"><span>Cost per consultation</span><span class="fin-value">~$175</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">−4%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+
+                <details class="arch-node svc-expand unmapped">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-tpira">Third Party IT Risk Advisory</span>
+                    <span class="rag-dot rag-amber" title="Amber"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode">F4.3</span></div>
+                    <p class="svc-desc">Advises engagement owners and application teams on the IT risk dimensions of third-party relationships — interpreting assessment results, guiding remediation of vendor control gaps, and supporting sourcing decisions.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-amber">Amber</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to first response</span><span class="kpi-target">Target ≤ 3 business days</span></div><div class="kpi-figure"><span class="kpi-value">3.9d</span><span class="rag rag-amber">Amber</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Advisory rework rate</span><span class="kpi-target">Target ≤ 10%</span></div><div class="kpi-figure"><span class="kpi-value">13%</span><span class="rag rag-amber">Amber</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Engagement owner satisfaction (CSAT)</span><span class="kpi-target">Target ≥ 88%</span></div><div class="kpi-figure"><span class="kpi-value">85%</span><span class="rag rag-amber">Amber</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-amber">Amber</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">3 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$540K</span></div>
+                        <div class="fin-row"><span>Cost per advisory engagement</span><span class="fin-value">~$260</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">+5%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+
+                <details class="arch-node svc-expand">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-cira">Change Initiative Risk Assessment Service</span>
+                    <span class="rag-dot rag-red" title="Red"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode open">open</span></div>
+                    <p class="svc-desc">Assesses the IT risk profile of significant change initiatives before launch, feeding Business Environment and Impact Evaluations and Process Environment Assessment. Demand is driven by the change portfolio, which makes volume hard to forecast.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-red">Red</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to complete pre-launch assessment</span><span class="kpi-target">Target ≤ 10 business days</span></div><div class="kpi-figure"><span class="kpi-value">14.7d</span><span class="rag rag-red">Red</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Assessments reworked after governance review</span><span class="kpi-target">Target ≤ 10%</span></div><div class="kpi-figure"><span class="kpi-value">21%</span><span class="rag rag-red">Red</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Initiatives assessed before launch</span><span class="kpi-target">Target ≥ 95%</span></div><div class="kpi-figure"><span class="kpi-value">81%</span><span class="rag rag-red">Red</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-red">Red</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">2.5 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$430K</span></div>
+                        <div class="fin-row"><span>Cost per assessment</span><span class="fin-value">~$390</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">+14%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+              </div>
+
+              <div class="arch-group">
+                <div class="arch-group-title">Risk Data &amp; Aggregation</div>
+                <details class="arch-node svc-expand">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-iras">Inherent Risk API Service</span>
+                    <span class="rag-dot rag-green" title="Green"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode open">open</span></div>
+                    <p class="svc-desc">The system-facing service exposing inherent risk scores programmatically so other tools (including the Application Criticality Score calculation) can consume them without a manual handoff. Operated like a platform service rather than a people-facing one.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">API availability (uptime)</span><span class="kpi-target">Target ≥ 99.5%</span></div><div class="kpi-figure"><span class="kpi-value">99.7%</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Score request error rate</span><span class="kpi-target">Target ≤ 1%</span></div><div class="kpi-figure"><span class="kpi-value">0.6%</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to resolve data-quality incidents</span><span class="kpi-target">Target ≤ 2 business days</span></div><div class="kpi-figure"><span class="kpi-value">1.5d</span><span class="rag rag-green">Green</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">2 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$380K</span></div>
+                        <div class="fin-row"><span>Cost per 1,000 API calls</span><span class="fin-value">~$4</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">−5%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+
+                <details class="arch-node svc-expand">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-rcsaagg">RCSA Aggregation Service</span>
+                    <span class="rag-dot rag-amber" title="Amber"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode">F2.4</span></div>
+                    <p class="svc-desc">Aggregates business-unit and process-level RCSA submissions into the consolidated views behind BU RCSA, Process RCSA, and the Operational Risk Profile — the roll-up layer turning individual self-assessments into a department-wide picture.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-amber">Amber</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to aggregate a submission cycle</span><span class="kpi-target">Target ≤ 5 business days</span></div><div class="kpi-figure"><span class="kpi-value">6.8d</span><span class="rag rag-amber">Amber</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Submissions returned (data-quality issues)</span><span class="kpi-target">Target ≤ 10%</span></div><div class="kpi-figure"><span class="kpi-value">16%</span><span class="rag rag-amber">Amber</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">On-time submission rate from contributors</span><span class="kpi-target">Target ≥ 90%</span></div><div class="kpi-figure"><span class="kpi-value">86%</span><span class="rag rag-amber">Amber</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-amber">Amber</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">3 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$560K</span></div>
+                        <div class="fin-row"><span>Cost per aggregation cycle</span><span class="fin-value">~$4,200</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">+4%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+
+                <details class="arch-node svc-expand">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-irs">Inherent Risk Support Service</span>
+                    <span class="rag-dot rag-green" title="Green"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode open">open</span></div>
+                    <p class="svc-desc">The human counterpart to the Inherent Risk API Service — handles exceptions automated scoring can't resolve, and supports teams disputing or interpreting a score.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to resolve a scoring exception</span><span class="kpi-target">Target ≤ 4 business days</span></div><div class="kpi-figure"><span class="kpi-value">3.2d</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Score disputes upheld (changed on review)</span><span class="kpi-target">Target ≤ 15%</span></div><div class="kpi-figure"><span class="kpi-value">11%</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Exceptions resolved within SLA</span><span class="kpi-target">Target ≥ 90%</span></div><div class="kpi-figure"><span class="kpi-value">93%</span><span class="rag rag-green">Green</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">1.5 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$260K</span></div>
+                        <div class="fin-row"><span>Cost per exception resolved</span><span class="fin-value">~$95</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">−2%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+              </div>
+
+              <div class="arch-group">
+                <div class="arch-group-title">Reporting Support</div>
+                <details class="arch-node svc-expand">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-itrms">IT Risk Metrics Support Service</span>
+                    <span class="rag-dot rag-amber" title="Amber"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode">F3.4</span></div>
+                    <p class="svc-desc">Builds and maintains the metrics pipeline behind the IT Metrics Dashboard and IT Risk Reports — collecting, validating, and publishing the numbers other services and products depend on being right.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-amber">Amber</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to publish monthly refresh</span><span class="kpi-target">Target ≤ 5 business days after period close</span></div><div class="kpi-figure"><span class="kpi-value">6.5d</span><span class="rag rag-amber">Amber</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Metric restatements after publication</span><span class="kpi-target">Target ≤ 5%</span></div><div class="kpi-figure"><span class="kpi-value">9%</span><span class="rag rag-amber">Amber</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Dashboard data freshness within SLA</span><span class="kpi-target">Target ≥ 95%</span></div><div class="kpi-figure"><span class="kpi-value">91%</span><span class="rag rag-amber">Amber</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-amber">Amber</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">3 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$540K</span></div>
+                        <div class="fin-row"><span>Cost per metrics cycle</span><span class="fin-value">~$1,600</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">+6%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+
+                <details class="arch-node svc-expand">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-rdss">Risk Documentation Site Support Service</span>
+                    <span class="rag-dot rag-green" title="Green"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode">F3.2</span></div>
+                    <p class="svc-desc">Maintains the IT Risk Documentation site — policies, procedures, and reference material that other teams and consumers (Application SMEs, Solution Architects) rely on being current and findable.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to publish a documentation update</span><span class="kpi-target">Target ≤ 3 business days</span></div><div class="kpi-figure"><span class="kpi-value">2.4d</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Pages flagged out-of-date</span><span class="kpi-target">Target ≤ 8%</span></div><div class="kpi-figure"><span class="kpi-value">6%</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Site search success rate</span><span class="kpi-target">Target ≥ 90%</span></div><div class="kpi-figure"><span class="kpi-value">92%</span><span class="rag rag-green">Green</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">1.5 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$240K</span></div>
+                        <div class="fin-row"><span>Cost per update published</span><span class="fin-value">~$85</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">−3%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+              </div>
+
+              <div class="arch-group">
+                <div class="arch-group-title">Regulatory &amp; Issues</div>
+                <details class="arch-node svc-expand unmapped">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-rrm">Regulatory Response Management Service</span>
+                    <span class="rag-dot rag-red" title="Red"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode">F5.3</span></div>
+                    <p class="svc-desc">Coordinates the department's responses to regulator inquiries and exam requests — pulling evidence and subject-matter input together on the regulator's clock, which makes this one of the least forgiving SLAs in the department.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-red">Red</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Responses submitted by regulator deadline</span><span class="kpi-target">Target 100%</span></div><div class="kpi-figure"><span class="kpi-value">88%</span><span class="rag rag-red">Red</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Responses requiring resubmission/clarification</span><span class="kpi-target">Target ≤ 10%</span></div><div class="kpi-figure"><span class="kpi-value">19%</span><span class="rag rag-red">Red</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Evidence requests fulfilled within internal SLA</span><span class="kpi-target">Target ≥ 90%</span></div><div class="kpi-figure"><span class="kpi-value">79%</span><span class="rag rag-red">Red</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-red">Red</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">3 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$610K</span></div>
+                        <div class="fin-row"><span>Cost per regulatory response</span><span class="fin-value">~$3,100</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">+11%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+
+                <details class="arch-node svc-expand" id="irimBox">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-irim">IT Risk Issues Management Service</span>
+                    <span class="rag-dot rag-red" title="Red"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode">F5</span></div>
+                    <p class="svc-desc">
+                      The single point of accountability for two issue
+                      workflows: <strong>Technology Findings</strong> —
+                      control gaps surfaced by assessments, testing, and
+                      audits — and <strong>Enterprise Issues</strong> — the
+                      subset of findings that meet materiality thresholds
+                      and get formally elevated into the enterprise issue
+                      program, with remediation plans, target dates, and
+                      governance reporting through to closure.
+                    </p>
+
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-red">Red</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+
+                        <div class="kpi-subgroup-head"><span>Technology Findings</span><span class="rag rag-amber">Amber</span></div>
+                        <div class="kpi-row">
+                          <div><span class="kpi-name">Time to Review (intake)</span><span class="kpi-target">Target ≤ 5 business days</span></div>
+                          <div class="kpi-figure"><span class="kpi-value">6.2d</span><span class="rag rag-amber">Amber</span></div>
+                        </div>
+                        <div class="kpi-row">
+                          <div><span class="kpi-name">Rejection rate</span><span class="kpi-target">Target ≤ 10%</span></div>
+                          <div class="kpi-figure"><span class="kpi-value">14%</span><span class="rag rag-amber">Amber</span></div>
+                        </div>
+                        <div class="kpi-row">
+                          <div><span class="kpi-name">Aging backlog (past SLA)</span><span class="kpi-target">Target ≤ 5% of open findings</span></div>
+                          <div class="kpi-figure"><span class="kpi-value">4%</span><span class="rag rag-green">Green</span></div>
+                        </div>
+
+                        <div class="kpi-subgroup-head"><span>Enterprise Issues</span><span class="rag rag-red">Red</span></div>
+                        <div class="kpi-row">
+                          <div><span class="kpi-name">Time to validate &amp; open</span><span class="kpi-target">Target ≤ 10 business days</span></div>
+                          <div class="kpi-figure"><span class="kpi-value">8.5d</span><span class="rag rag-green">Green</span></div>
+                        </div>
+                        <div class="kpi-row">
+                          <div><span class="kpi-name">Remediation plan rejection rate</span><span class="kpi-target">Target ≤ 15%</span></div>
+                          <div class="kpi-figure"><span class="kpi-value">22%</span><span class="rag rag-red">Red</span></div>
+                        </div>
+                        <div class="kpi-row">
+                          <div><span class="kpi-name">On-time closure rate</span><span class="kpi-target">Target ≥ 90%</span></div>
+                          <div class="kpi-figure"><span class="kpi-value">84%</span><span class="rag rag-amber">Amber</span></div>
+                        </div>
+                      </div>
+                    </details>
+
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-amber">Amber</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">4.5 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$850K</span></div>
+                        <div class="fin-row"><span>Cost per Finding reviewed</span><span class="fin-value">~$180</span></div>
+                        <div class="fin-row"><span>Cost per Enterprise Issue managed</span><span class="fin-value">~$2,400</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">+9%</span></div>
+                        <div class="callout" style="margin-top:12px;">
+                          <strong>Automation angle.</strong> An estimated
+                          ~35% of Technology Findings intake — categorization,
+                          duplicate checks, evidence completeness — is still
+                          manual. That's the candidate first target once this
+                          data is real: an agent that pre-triages findings
+                          before a human reviews them.
+                        </div>
+                      </div>
+                    </details>
+
+                    <a class="svc-visit-link" href="https://claude.ai/code/artifact/ae791543-54b6-4745-a6d7-434fecab19f1" target="_blank" rel="noopener">Visit Service <span class="arrow">→</span></a>
+                  </div>
+                </details>
+              </div>
+
+              <div class="arch-group">
+                <div class="arch-group-title">Enablement</div>
+                <details class="arch-node svc-expand unmapped">
+                  <summary class="svc-summary">
+                    <span class="svc-name" data-id="s-adas">Application Development &amp; Automation Services</span>
+                    <span class="rag-dot rag-green" title="Green"></span>
+                    <span class="chevron">›</span>
+                  </summary>
+                  <div class="svc-detail">
+                    <div class="svc-owner">Candidate owner <span class="fcode">F3.3</span></div>
+                    <p class="svc-desc">Builds and maintains the internal tools, scripts, and integrations the other 16 services run on — dashboards, the Inherent Risk API, workflow automation — making it the one service whose &ldquo;customers&rdquo; are mostly other services rather than external consumers.</p>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Performance</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="kpi-row"><div><span class="kpi-name">Time to deliver a small enhancement</span><span class="kpi-target">Target ≤ 10 business days</span></div><div class="kpi-figure"><span class="kpi-value">8.6d</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Defects reopened after release</span><span class="kpi-target">Target ≤ 10%</span></div><div class="kpi-figure"><span class="kpi-value">7%</span><span class="rag rag-green">Green</span></div></div>
+                        <div class="kpi-row"><div><span class="kpi-name">Planned release commitments met</span><span class="kpi-target">Target ≥ 90%</span></div><div class="kpi-figure"><span class="kpi-value">92%</span><span class="rag rag-green">Green</span></div></div>
+                      </div>
+                    </details>
+                    <details class="svc-sub">
+                      <summary><span class="chevron">›</span><span class="svc-sub-label">Finances</span><span class="rag rag-green">Green</span></summary>
+                      <div class="svc-sub-body">
+                        <span class="svc-sample-tag">Sample data — illustrative, not live</span>
+                        <div class="fin-row"><span>Team size</span><span class="fin-value">4 FTE</span></div>
+                        <div class="fin-row"><span>Annual operating cost</span><span class="fin-value">$760K</span></div>
+                        <div class="fin-row"><span>Cost per delivered enhancement</span><span class="fin-value">~$2,900</span></div>
+                        <div class="fin-row"><span>Budget variance</span><span class="fin-value">−1%</span></div>
+                      </div>
+                    </details>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+          <div class="matrix-note">Dashed-border nodes (Crown Jewel Report, Payments Assessments, Regulatory Response Management Service, Third Party IT Risk Advisory, Application Development &amp; Automation Services) have no confirmed or hypothesized product/service counterpart yet.</div>
+          <div class="svc-proto-note"><strong>Try it:</strong> the colored dot on a Service marks its RAG status — click the box to expand into description → Performance / Finances, each drill-down carrying its own summary rating and candidate owner. Consumers and Products are plain boxes with nothing underneath, sized to match. All KPI, rating, and cost figures are illustrative sample data — see <span class="mono">docs/service-catalog.md</span> for the full write-up and the rules behind each rating.</div>
+          <div class="callout">
+            <strong>Naming note.</strong> This &ldquo;Service&rdquo; layer is
+            coarser-grained than the per-subteam <span class="mono">service</span>
+            entries that will live under Layer 3 — a reference-architecture
+            Service will likely decompose into several of those once
+            documented. Don't conflate the two lists.
+          </div>
+        </section>
+
+      </div>
+
+      <div class="panel panel-tech">
+        <section>
+          <div class="section-label">Technology</div>
+          <h2 class="section-title">What the work runs on</h2>
+          <div class="empty-state">
+            <h3>Waiting on Layer 3 — services</h3>
+            <p>System diagrams populate this view once services are documented.
+            Each service will contribute:</p>
+            <div class="field-preview">
+              <div class="field-row"><span class="field-code mono">systems_tools</span><span class="field-desc">Software/systems touched — becomes system-diagram nodes</span></div>
+              <div class="field-row"><span class="field-code mono">inputs / outputs</span><span class="field-desc">What flows in and out — becomes system-diagram edges</span></div>
+              <div class="field-row"><span class="field-code mono">dependencies</span><span class="field-desc">Upstream/downstream services this connects to</span></div>
+              <div class="field-row"><span class="field-code mono">matrix_relationships</span><span class="field-desc">Cross-function/region data &amp; requirement links</span></div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="panel panel-ref">
+        <section>
+          <div class="section-label">Completeness check · draft</div>
+          <h2 class="section-title">Candidate industry frameworks</h2>
+          <p class="dek" style="margin-bottom:20px;">
+            Frameworks commonly cited by IT/technology risk functions with these
+            names, mapped here to check the design is complete — not yet
+            confirmed as what this organization actually uses. Validate before
+            treating as authoritative.
+          </p>
+          <div class="table-scroll">
+            <table class="fw">
+              <thead><tr><th>Function</th><th>Framework / guidance</th><th>Relevance</th></tr></thead>
+              <tbody>
+                <tr><td class="fn-tag-cell"><span class="tag">F1</span></td><td><span class="framework">COBIT 2019</span><span class="issuer">ISACA</span></td><td class="relevance">IT governance &amp; management objectives</td></tr>
+                <tr><td class="fn-tag-cell"><span class="tag">F1</span></td><td><span class="framework">Heightened Standards, 12 CFR 30 App. D</span><span class="issuer">OCC</span></td><td class="relevance">Board/risk-committee governance, 3 lines of defense</td></tr>
+                <tr><td class="fn-tag-cell"><span class="tag">F2</span></td><td><span class="framework">Sound Mgmt of Operational Risk (PSMOR)</span><span class="issuer">Basel Committee</span></td><td class="relevance">Baseline operational risk expectations</td></tr>
+                <tr><td class="fn-tag-cell"><span class="tag">F2</span></td><td><span class="framework">ISO 31000</span><span class="issuer">ISO</span></td><td class="relevance">General risk management principles</td></tr>
+                <tr><td class="fn-tag-cell"><span class="tag">F3</span></td><td><span class="framework">ITIL 4</span><span class="issuer">AXELOS</span></td><td class="relevance">IT service management for shared capabilities</td></tr>
+                <tr><td class="fn-tag-cell"><span class="tag">F4</span></td><td><span class="framework">Interagency Guidance on Third-Party Relationships (2023)</span><span class="issuer">OCC / FDIC / Federal Reserve</span></td><td class="relevance">Current US vendor risk supervisory expectations</td></tr>
+                <tr><td class="fn-tag-cell"><span class="tag">F4</span></td><td><span class="framework">SP 800-161</span><span class="issuer">NIST</span></td><td class="relevance">Cyber supply-chain risk management</td></tr>
+                <tr><td class="fn-tag-cell"><span class="tag">F5</span></td><td><span class="framework">IT Examination Handbook</span><span class="issuer">FFIEC</span></td><td class="relevance">US regulatory IT exam structure</td></tr>
+                <tr><td class="fn-tag-cell"><span class="tag">F5</span></td><td><span class="framework">IPPF</span><span class="issuer">IIA</span></td><td class="relevance">Internal audit standards, issue management</td></tr>
+                <tr><td class="fn-tag-cell"><span class="tag regional">F6</span></td><td><span class="framework">IT Exam Handbook (Mgmt / InfoSec / BCM)</span><span class="issuer">FFIEC</span></td><td class="relevance">Core US bank IT risk supervisory framework</td></tr>
+                <tr><td class="fn-tag-cell"><span class="tag regional">F6</span></td><td><span class="framework">Cybersecurity Framework (CSF) 2.0</span><span class="issuer">NIST</span></td><td class="relevance">Widely mapped control/outcome framework</td></tr>
+                <tr><td class="fn-tag-cell"><span class="tag regional">F7</span></td><td><span class="framework">Guidelines on ICT &amp; Security Risk Mgmt</span><span class="issuer">EBA</span></td><td class="relevance">EU supervisory ICT risk expectations</td></tr>
+                <tr><td class="fn-tag-cell"><span class="tag regional">F7</span></td><td><span class="framework">DORA</span><span class="issuer">European Union</span></td><td class="relevance">Binding EU digital operational resilience regulation</td></tr>
+                <tr><td class="fn-tag-cell"><span class="tag regional">F7</span></td><td><span class="framework">Operational Resilience (SS2/21)</span><span class="issuer">UK PRA</span></td><td class="relevance">UK resilience expectations, if UK is in scope</td></tr>
+                <tr><td class="fn-tag-cell"><span class="tag">F8</span></td><td><span class="framework">ISO/IEC 27001</span><span class="issuer">ISO</span></td><td class="relevance">Control assessment / certification baseline</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">
+            <strong>Not yet validated.</strong> This list exists to check that
+            each function's mandate is fully accounted for — confirm, correct,
+            and prune against what your organization actually cites before
+            services get tagged against it.
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <span>Global IT Risk — Operating Model</span>
+    <span>Source: <span class="mono">docs/org-structure.md</span> · <span class="mono">docs/reference-architecture.md</span> · <span class="mono">docs/information-architecture.md</span></span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var container = document.getElementById('archDiagram');
+  var svg = document.getElementById('archLines');
+  if (!container || !svg) return;
+
+  var edges = [
+    ['p-aca', 's-aca', 'confirmed'],
+    ['p-cloud', 's-cloud', 'confirmed'],
+    ['p-ica', 's-ica', 'confirmed'],
+    ['p-burcsa', 's-rcsaagg', 'hypothesis'],
+    ['p-prcsa', 's-rcsaagg', 'hypothesis'],
+    ['p-orp', 's-rcsaagg', 'hypothesis'],
+    ['p-orp', 's-orec', 'hypothesis'],
+    ['p-dash', 's-itrms', 'hypothesis'],
+    ['p-itrr', 's-itrms', 'hypothesis'],
+    ['p-itrr', 's-irim', 'hypothesis'],
+    ['p-itrd', 's-rdss', 'hypothesis'],
+    ['p-acs', 's-iras', 'hypothesis'],
+    ['p-acs', 's-irs', 'hypothesis'],
+    ['p-soc1', 's-itcs', 'hypothesis'],
+    ['p-nist', 's-cts', 'hypothesis'],
+    ['p-beie', 's-cira', 'hypothesis'],
+    ['p-pea', 's-cira', 'hypothesis'],
+    ['p-aca', 's-acaica', 'hypothesis'],
+    ['p-ica', 's-acaica', 'hypothesis'],
+
+    ['c-gov', 'p-cjr', 'hypothesis'],
+    ['c-sec', 'p-cjr', 'hypothesis'],
+    ['c-gov', 'p-dash', 'hypothesis'],
+    ['c-bao', 'p-cloud', 'hypothesis'],
+    ['c-bao', 'p-burcsa', 'hypothesis'],
+    ['c-bao', 'p-prcsa', 'hypothesis'],
+    ['c-aar', 'p-pay', 'hypothesis'],
+    ['c-bao', 'p-pay', 'hypothesis'],
+    ['c-bao', 'p-acs', 'hypothesis'],
+    ['c-aar', 'p-soc1', 'hypothesis'],
+    ['c-tps', 'p-soc1', 'hypothesis'],
+    ['c-gov', 'p-orp', 'hypothesis'],
+    ['c-bao', 'p-aca', 'hypothesis'],
+    ['c-bao', 'p-beie', 'hypothesis'],
+    ['c-bao', 'p-pea', 'hypothesis'],
+    ['c-gov', 'p-itrr', 'hypothesis'],
+    ['c-sec', 'p-itrr', 'hypothesis'],
+    ['c-era', 'p-itrd', 'hypothesis'],
+    ['c-sec', 'p-nist', 'hypothesis'],
+    ['c-bao', 'p-ica', 'hypothesis'],
+    ['c-itp', 'p-ica', 'hypothesis']
+  ];
+
+  var svgNS = 'http://www.w3.org/2000/svg';
+
+  function draw() {
+    var rect = container.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    svg.setAttribute('viewBox', '0 0 ' + rect.width + ' ' + rect.height);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+    edges.forEach(function (e) {
+      var a = container.querySelector('[data-id="' + e[0] + '"]');
+      var b = container.querySelector('[data-id="' + e[1] + '"]');
+      if (!a || !b) return;
+      var ar = a.getBoundingClientRect();
+      var br = b.getBoundingClientRect();
+      var x1 = ar.right - rect.left;
+      var y1 = ar.top - rect.top + ar.height / 2;
+      var x2 = br.left - rect.left;
+      var y2 = br.top - rect.top + br.height / 2;
+      var mx = (x1 + x2) / 2;
+      var path = document.createElementNS(svgNS, 'path');
+      path.setAttribute('d', 'M ' + x1 + ' ' + y1 + ' C ' + mx + ' ' + y1 + ', ' + mx + ' ' + y2 + ', ' + x2 + ' ' + y2);
+      path.setAttribute('class', 'edge ' + e[2]);
+      path.setAttribute('data-a', e[0]);
+      path.setAttribute('data-b', e[1]);
+      svg.appendChild(path);
+    });
+  }
+
+  function isVisible() {
+    return container.offsetParent !== null;
+  }
+
+  window.addEventListener('resize', function () { if (isVisible()) draw(); });
+
+  var processTab = document.getElementById('tab-process');
+  if (processTab) {
+    processTab.addEventListener('change', function () {
+      if (this.checked) requestAnimationFrame(draw);
+    });
+  }
+
+  var toggleTargets = container.querySelectorAll('.svc-expand, .svc-expand .svc-sub');
+  toggleTargets.forEach(function (el) {
+    el.addEventListener('toggle', function () {
+      requestAnimationFrame(function () { if (isVisible()) draw(); });
+    });
+  });
+
+  if (isVisible()) draw();
+
+  container.addEventListener('mouseover', function (ev) {
+    var node = ev.target.closest ? ev.target.closest('[data-id]') : null;
+    if (!node) return;
+    var id = node.getAttribute('data-id');
+    var paths = svg.querySelectorAll('.edge');
+    for (var i = 0; i < paths.length; i++) {
+      var p = paths[i];
+      if (p.getAttribute('data-a') === id || p.getAttribute('data-b') === id) {
+        p.classList.add('highlight');
+        p.classList.remove('dim');
+      } else {
+        p.classList.add('dim');
+      }
+    }
+  });
+  container.addEventListener('mouseout', function (ev) {
+    var node = ev.target.closest ? ev.target.closest('[data-id]') : null;
+    if (!node) return;
+    var paths = svg.querySelectorAll('.edge');
+    for (var i = 0; i < paths.length; i++) {
+      paths[i].classList.remove('highlight');
+      paths[i].classList.remove('dim');
+    }
+  });
+})();
+</script>

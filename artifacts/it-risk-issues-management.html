@@ -1,0 +1,579 @@
+<title>IT Risk Issues Management — Service Overview</title>
+<style>
+  :root {
+    --paper: #f2f3f0;
+    --paper-raised: #fbfbf9;
+    --ink: #1a2130;
+    --muted: #5b6460;
+    --line: #d3d6cf;
+    --line-strong: #b7bbb1;
+    --global: #00838d;
+    --global-soft: #dcf0f1;
+    --regional: #a85a26;
+    --regional-soft: #f4e4d5;
+    --status-good: #1b7a3d;
+    --status-warn: #a9790a;
+    --status-bad: #b23a3a;
+    --shadow: 0 1px 2px rgba(26, 33, 48, 0.06);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14171a; --paper-raised: #1b1f22; --ink: #e8e7e1; --muted: #9ba39c;
+      --line: #2b3430; --line-strong: #3a443e; --global: #2fa7b0; --global-soft: #17302f;
+      --regional: #c77b3a; --regional-soft: #2f2318;
+      --status-good: #4fbe7c; --status-warn: #e0b04c; --status-bad: #e0685f;
+      --shadow: none; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #14171a; --paper-raised: #1b1f22; --ink: #e8e7e1; --muted: #9ba39c;
+    --line: #2b3430; --line-strong: #3a443e; --global: #2fa7b0; --global-soft: #17302f;
+    --regional: #c77b3a; --regional-soft: #2f2318;
+    --status-good: #4fbe7c; --status-warn: #e0b04c; --status-bad: #e0685f;
+    --shadow: none; color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --paper: #f2f3f0; --paper-raised: #fbfbf9; --ink: #1a2130; --muted: #5b6460;
+    --line: #d3d6cf; --line-strong: #b7bbb1; --global: #00838d; --global-soft: #dcf0f1;
+    --regional: #a85a26; --regional-soft: #f4e4d5;
+    --status-good: #1b7a3d; --status-warn: #a9790a; --status-bad: #b23a3a;
+    --shadow: 0 1px 2px rgba(26, 33, 48, 0.06); color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { background: var(--paper); color: var(--ink); }
+  body {
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--global-soft); }
+  h1, h2, h3 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+    font-weight: 400; color: var(--ink); text-wrap: balance; margin: 0;
+  }
+  .mono { font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace; }
+
+  /* ---------- Fixed header ---------- */
+  .svc-header {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    padding: 20px 24px 0;
+  }
+  .svc-header-inner { max-width: 980px; margin: 0 auto; }
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .svc-title { font-size: 26px; line-height: 1.2; margin-bottom: 14px; }
+  .svc-nav {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px;
+  }
+  .nav-input { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+  .svc-nav label {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 9px 4px; margin-right: 22px; color: var(--muted); cursor: pointer;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+    transition: color 0.12s ease, border-color 0.12s ease;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .svc-nav label:hover { color: var(--ink); }
+  .nav-badge {
+    font-size: 9.5px; border: 1px solid var(--line-strong); border-radius: 100px;
+    padding: 1px 6px; color: var(--muted); text-transform: none; letter-spacing: 0;
+  }
+  #nav-review:checked ~ .svc-header .svc-nav label[for="nav-review"],
+  #nav-promotion:checked ~ .svc-header .svc-nav label[for="nav-promotion"],
+  #nav-aggregation:checked ~ .svc-header .svc-nav label[for="nav-aggregation"],
+  #nav-reporting:checked ~ .svc-header .svc-nav label[for="nav-reporting"] {
+    color: var(--ink); border-bottom-color: var(--ink);
+  }
+  .report-select {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px; letter-spacing: 0.02em;
+    background: var(--paper-raised); color: var(--ink);
+    border: 1px solid var(--line-strong); border-radius: 4px;
+    padding: 6px 10px; margin: 4px 0 10px 0; cursor: pointer;
+  }
+  .nav-hint { display: none; width: 100%; }
+  #nav-reporting:checked ~ .svc-header .svc-nav .nav-hint { display: block; }
+
+  /* ---------- Page body ---------- */
+  .page { max-width: 980px; margin: 0 auto; padding: 32px 24px 96px; }
+  .panel { display: none; }
+  #nav-review:checked ~ .page .panel-review,
+  #nav-promotion:checked ~ .page .panel-promotion,
+  #nav-aggregation:checked ~ .page .panel-aggregation,
+  #nav-reporting:checked ~ .page .panel-reporting { display: block; }
+
+  .report-panel { display: none; }
+  .report-panel.active { display: block; }
+
+  section { margin-top: 44px; }
+  section:first-child { margin-top: 0; }
+  .section-label {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+  }
+  h2.section-title { font-size: 22px; margin-bottom: 14px; }
+  p.dek { color: var(--muted); font-size: 15px; max-width: 66ch; }
+
+  .empty-state {
+    border: 1px dashed var(--line-strong); border-radius: 4px; padding: 28px 26px;
+    background: var(--paper-raised);
+  }
+  .empty-state h3 { font-size: 17px; margin-bottom: 8px; }
+  .empty-state p { color: var(--muted); font-size: 14px; margin: 0; max-width: 60ch; }
+
+  .callout {
+    margin-top: 18px; border: 1px dashed var(--line-strong); border-radius: 3px;
+    padding: 14px 18px; font-size: 13.5px; color: var(--muted);
+  }
+  .callout strong { color: var(--ink); }
+
+  /* ---------- Filter bar ---------- */
+  .filter-bar {
+    display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end;
+    background: var(--paper-raised); border: 1px solid var(--line); border-radius: 4px;
+    padding: 14px 16px; margin-bottom: 8px;
+  }
+  .filter-field { display: flex; flex-direction: column; gap: 4px; }
+  .filter-field label {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 10.5px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+  }
+  .filter-field select {
+    font-family: -apple-system, "Segoe UI", sans-serif; font-size: 13.5px;
+    background: var(--paper); color: var(--ink); border: 1px solid var(--line-strong);
+    border-radius: 4px; padding: 7px 10px; min-width: 168px; cursor: pointer;
+  }
+  .filter-reset {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11px;
+    color: var(--muted); background: none; border: none; text-decoration: underline;
+    cursor: pointer; padding: 7px 4px;
+  }
+  .filter-reset:hover { color: var(--ink); }
+  .filter-summary { font-size: 12.5px; color: var(--muted); margin: 10px 0 0; }
+  .filter-summary strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  /* ---------- Stat tiles ---------- */
+  .stat-row { display: flex; flex-wrap: wrap; gap: 30px; }
+  .stat { display: flex; flex-direction: column; gap: 3px; min-width: 92px; }
+  .stat-num { font-family: Georgia, serif; font-size: 32px; line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat-label { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .stat-sub { font-size: 12px; color: var(--muted); margin-top: 2px; max-width: 22ch; }
+
+  /* ---------- Bar chart ---------- */
+  .bars { display: flex; flex-direction: column; gap: 10px; }
+  .bar-row { display: grid; grid-template-columns: 168px 1fr 34px; align-items: center; gap: 10px; }
+  .bar-label { font-size: 13px; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bar-track { background: var(--line); border-radius: 3px; height: 14px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; transition: width 0.25s ease; }
+  .bar-value { font-family: Georgia, serif; font-size: 13.5px; text-align: right; font-variant-numeric: tabular-nums; }
+  .bars-empty { font-size: 13px; color: var(--muted); font-style: italic; }
+
+  /* ---------- Stacked bar (severity by type) ---------- */
+  .stack-legend { display: flex; gap: 18px; margin-bottom: 14px; font-size: 12.5px; color: var(--muted); }
+  .stack-legend-item { display: flex; align-items: center; gap: 6px; }
+  .stack-swatch { width: 10px; height: 10px; border-radius: 2px; }
+  .stack-row { display: grid; grid-template-columns: 140px 1fr 40px; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .stack-track { display: flex; gap: 2px; height: 16px; border-radius: 3px; overflow: hidden; background: var(--line); }
+  .stack-seg { height: 100%; transition: width 0.25s ease; }
+  .stack-total { font-family: Georgia, serif; font-size: 13.5px; text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* ---------- Due-soon table ---------- */
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .due-table th, .due-table td {
+    border-bottom: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top;
+  }
+  .due-table thead th {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 10.5px;
+    letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted);
+    border-bottom: 2px solid var(--line-strong);
+  }
+  .due-table td.num { font-variant-numeric: tabular-nums; }
+  .win-tag {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 10px;
+    padding: 2px 7px; border-radius: 100px; white-space: nowrap;
+  }
+  .win-30 { background: color-mix(in srgb, var(--status-bad) 14%, transparent); color: var(--status-bad); }
+  .win-60 { background: color-mix(in srgb, var(--status-warn) 16%, transparent); color: var(--status-warn); }
+
+  footer {
+    margin-top: 72px; padding-top: 18px; border-top: 1px solid var(--line);
+    font-size: 12.5px; color: var(--muted); display: flex; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap; max-width: 980px; margin-left: auto; margin-right: auto; padding-left: 24px; padding-right: 24px;
+  }
+
+  @media (max-width: 640px) {
+    .svc-title { font-size: 21px; }
+    .bar-row { grid-template-columns: 108px 1fr 30px; }
+    .stack-row { grid-template-columns: 96px 1fr 34px; }
+    .filter-field select { min-width: 130px; }
+  }
+</style>
+
+<input type="radio" name="nav" id="nav-review" class="nav-input">
+<input type="radio" name="nav" id="nav-promotion" class="nav-input">
+<input type="radio" name="nav" id="nav-aggregation" class="nav-input">
+<input type="radio" name="nav" id="nav-reporting" class="nav-input" checked>
+
+<div class="svc-header">
+  <div class="svc-header-inner">
+    <div class="eyebrow">Global IT Risk · Regulatory, Audit &amp; Issues Management</div>
+    <h1 class="svc-title">IT Risk Issues Management — Service Overview</h1>
+
+    <nav class="svc-nav">
+      <label for="nav-review">Review Issues</label>
+      <label for="nav-promotion">Promotion to Enterprise Issues</label>
+      <label for="nav-aggregation">Aggregation of Issues</label>
+      <label for="nav-reporting">Reporting</label>
+      <div class="nav-hint">
+        <select class="report-select" id="reportSelect" aria-label="Select report">
+          <option value="summary">Aggregated Issues Summary</option>
+          <option value="overdue">Overdue &amp; Aging Report (coming soon)</option>
+          <option value="remediation">Remediation Plan Status (coming soon)</option>
+        </select>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="panel panel-review">
+    <section>
+      <div class="section-label">Review Issues</div>
+      <h2 class="section-title">Not yet documented</h2>
+      <div class="empty-state">
+        <h3>Waiting on process detail</h3>
+        <p>This is where Technology Findings intake/triage will live once
+        documented as its own process under
+        <span class="mono">services/it-risk-issues-management/processes/</span> —
+        see the Service README for what's tracked so far.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="panel panel-promotion">
+    <section>
+      <div class="section-label">Promotion to Enterprise Issues</div>
+      <h2 class="section-title">Not yet documented</h2>
+      <div class="empty-state">
+        <h3>Waiting on process detail</h3>
+        <p>This is where the Finding → Enterprise Issue elevation workflow
+        (materiality threshold, remediation plan, target date, governance
+        reporting) will live once documented as its own process.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="panel panel-aggregation">
+    <section>
+      <div class="section-label">Aggregation of Issues</div>
+      <h2 class="section-title">Not yet documented</h2>
+      <div class="empty-state">
+        <h3>Waiting on process detail</h3>
+        <p>The process steps (trigger, inputs, outputs) for this one
+        already exist —
+        <a href="../processes/aggregated-issues-reporting/README.md" class="mono">processes/aggregated-issues-reporting/README.md</a>
+        — but this page doesn't visualize the process flow itself yet,
+        only the report it produces (see Reporting).</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="panel panel-reporting">
+
+    <div class="report-panel active" id="report-summary">
+      <section>
+        <div class="section-label">Reporting · Aggregated Issues Summary</div>
+        <h2 class="section-title">Issues across Findings, Enterprise Issues &amp; Internal Audit</h2>
+        <p class="dek">Sample data, as of 2026-08-01 — synthetic, generated to prototype this report before real system access is wired up. See <span class="mono">data/README.md</span> for the schema and the "coming due" methodology.</p>
+      </section>
+
+      <section>
+        <div class="filter-bar">
+          <div class="filter-field">
+            <label for="f-owner">Owner</label>
+            <select id="f-owner"><option value="All">All</option></select>
+          </div>
+          <div class="filter-field">
+            <label for="f-business">Business</label>
+            <select id="f-business"><option value="All">All</option></select>
+          </div>
+          <div class="filter-field">
+            <label for="f-region">Region</label>
+            <select id="f-region"><option value="All">All</option></select>
+          </div>
+          <button class="filter-reset" id="filterReset" type="button">Reset filters</button>
+        </div>
+        <p class="filter-summary" id="filterSummary"></p>
+      </section>
+
+      <section>
+        <div class="section-label">a</div>
+        <h2 class="section-title">Number of issues by type</h2>
+        <div class="bars" id="chartByType"></div>
+      </section>
+
+      <section>
+        <div class="section-label">c</div>
+        <h2 class="section-title">Severity by type</h2>
+        <div class="stack-legend">
+          <div class="stack-legend-item"><span class="stack-swatch" style="background:var(--status-bad)"></span>High</div>
+          <div class="stack-legend-item"><span class="stack-swatch" style="background:var(--status-warn)"></span>Medium</div>
+          <div class="stack-legend-item"><span class="stack-swatch" style="background:var(--status-good)"></span>Low</div>
+        </div>
+        <div id="chartSeverityByType"></div>
+      </section>
+
+      <section>
+        <div class="section-label">d</div>
+        <h2 class="section-title">Number of issues by owner</h2>
+        <div class="bars" id="chartByOwner"></div>
+      </section>
+
+      <section>
+        <div class="section-label">e</div>
+        <h2 class="section-title">Number of issues by risk category</h2>
+        <div class="bars" id="chartByRiskCategory"></div>
+      </section>
+
+      <section>
+        <div class="section-label">f &amp; g</div>
+        <h2 class="section-title">Coming due</h2>
+        <p class="dek" style="margin-bottom:16px;">Open or in-remediation issues only — already-overdue and closed items are excluded. The 60-day count includes the 30-day one.</p>
+        <div class="stat-row">
+          <div class="stat">
+            <span class="stat-num" id="statDue30">0</span>
+            <span class="stat-label">Due within 30 days</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" id="statDue60">0</span>
+            <span class="stat-label">Due within 60 days</span>
+          </div>
+        </div>
+        <div class="table-scroll" style="margin-top:20px;">
+          <table class="due-table">
+            <thead><tr><th>ID</th><th>Title</th><th>Type</th><th>Severity</th><th>Owner</th><th>Due</th><th>Window</th></tr></thead>
+            <tbody id="dueTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="report-panel" id="report-overdue">
+      <section>
+        <div class="section-label">Reporting · Overdue &amp; Aging Report</div>
+        <h2 class="section-title">Not yet built</h2>
+        <div class="empty-state">
+          <h3>Coming soon</h3>
+          <p>Will break out the items currently excluded from "coming due"
+          above — open/in-remediation issues already past their due date —
+          by how overdue they are.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="report-panel" id="report-remediation">
+      <section>
+        <div class="section-label">Reporting · Remediation Plan Status</div>
+        <h2 class="section-title">Not yet built</h2>
+        <div class="empty-state">
+          <h3>Coming soon</h3>
+          <p>Will track remediation plan submission/rejection once that
+          data exists — the same dimension behind the Remediation Plan
+          Rejection Rate KPI in the Service catalog.</p>
+        </div>
+      </section>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <span>IT Risk Issues Management — Service Overview</span>
+  <span>Source: <span class="mono">services/it-risk-issues-management/</span></span>
+</footer>
+
+<script>
+(function () {
+  var ISSUES = [
+    {id:'F-1001', type:'Findings', title:'Missing MFA on privileged accounts - App-2210', severity:'High', status:'Open', owner:'J. Alvarez', region:'US', business:'Technology Infrastructure', riskCategory:'Access Management', dueDate:'2026-08-15'},
+    {id:'F-1002', type:'Findings', title:'Unencrypted data at rest - Cloud workload CW-118', severity:'High', status:'In Remediation', owner:'M. Chen', region:'EMEA', business:'Technology Infrastructure', riskCategory:'Data Protection', dueDate:'2026-07-01'},
+    {id:'F-1003', type:'Findings', title:'Stale firewall rules on DMZ segment', severity:'Medium', status:'Open', owner:'R. Osei', region:'US', business:'Technology Infrastructure', riskCategory:'Network Security', dueDate:'2026-09-01'},
+    {id:'F-1004', type:'Findings', title:'Excessive access - shared service accounts', severity:'Medium', status:'Overdue', owner:'T. Nguyen', region:'US', business:'Enterprise', riskCategory:'Access Management', dueDate:'2026-05-01'},
+    {id:'F-1005', type:'Findings', title:'Vendor SOC1 exceptions not tracked', severity:'High', status:'Open', owner:'J. Alvarez', region:'US', business:'Enterprise', riskCategory:'Third Party Risk', dueDate:'2026-08-20'},
+    {id:'F-1006', type:'Findings', title:'Patch compliance gap - legacy servers', severity:'Medium', status:'In Remediation', owner:'R. Osei', region:'EMEA', business:'Technology Infrastructure', riskCategory:'Patch Management', dueDate:'2026-06-30'},
+    {id:'F-1007', type:'Findings', title:'Payment gateway logging incomplete', severity:'High', status:'Open', owner:'S. Patel', region:'US', business:'Payments', riskCategory:'Application Security', dueDate:'2026-09-10'},
+    {id:'F-1008', type:'Findings', title:'Cloud config drift - storage buckets', severity:'Low', status:'Closed', owner:'M. Chen', region:'EMEA', business:'Technology Infrastructure', riskCategory:'Cloud Security', dueDate:'2026-03-01'},
+    {id:'F-1009', type:'Findings', title:'Application criticality tier undocumented', severity:'Low', status:'Open', owner:'T. Nguyen', region:'US', business:'Enterprise', riskCategory:'Governance & Documentation', dueDate:'2026-09-18'},
+    {id:'F-1010', type:'Findings', title:'Third-party penetration test overdue', severity:'High', status:'Overdue', owner:'J. Alvarez', region:'EMEA', business:'Enterprise', riskCategory:'Third Party Risk', dueDate:'2026-04-05'},
+    {id:'EI-501', type:'Enterprise Issues', title:'Privileged access MFA gap - enterprise-wide', severity:'High', status:'In Remediation', owner:'K. Brooks', region:'US', business:'Enterprise', riskCategory:'Access Management', dueDate:'2026-09-30'},
+    {id:'EI-502', type:'Enterprise Issues', title:'Cloud data encryption standard non-compliance', severity:'High', status:'Open', owner:'L. Farrow', region:'EMEA', business:'Technology Infrastructure', riskCategory:'Data Protection', dueDate:'2026-08-15'},
+    {id:'EI-503', type:'Enterprise Issues', title:'Vendor control oversight gap - SOC1 exceptions', severity:'Medium', status:'Open', owner:'K. Brooks', region:'US', business:'Enterprise', riskCategory:'Third Party Risk', dueDate:'2026-10-01'},
+    {id:'EI-504', type:'Enterprise Issues', title:'Legacy infrastructure patch backlog', severity:'Medium', status:'In Remediation', owner:'D. Whitfield', region:'US', business:'Technology Infrastructure', riskCategory:'Patch Management', dueDate:'2026-07-31'},
+    {id:'EI-505', type:'Enterprise Issues', title:'Payments logging control gap', severity:'High', status:'Open', owner:'K. Brooks', region:'US', business:'Payments', riskCategory:'Application Security', dueDate:'2026-10-15'},
+    {id:'EI-506', type:'Enterprise Issues', title:'Third-party assurance testing backlog', severity:'High', status:'Overdue', owner:'L. Farrow', region:'EMEA', business:'Enterprise', riskCategory:'Third Party Risk', dueDate:'2026-05-01'},
+    {id:'EI-507', type:'Enterprise Issues', title:'Enterprise access recertification delays', severity:'Medium', status:'Open', owner:'D. Whitfield', region:'US', business:'Enterprise', riskCategory:'Access Management', dueDate:'2026-09-01'},
+    {id:'EI-508', type:'Enterprise Issues', title:'Regional control self-assessment coverage gap', severity:'Low', status:'Open', owner:'L. Farrow', region:'EMEA', business:'Enterprise', riskCategory:'Governance & Documentation', dueDate:'2026-11-01'},
+    {id:'IA-2201', type:'Internal Audit', title:'IT General Controls Audit - Access Management', severity:'High', status:'Open', owner:'K. Brooks', region:'US', business:'Enterprise', riskCategory:'Access Management', dueDate:'2026-08-31'},
+    {id:'IA-2202', type:'Internal Audit', title:'Cloud Security Audit', severity:'Medium', status:'In Remediation', owner:'M. Chen', region:'EMEA', business:'Technology Infrastructure', riskCategory:'Cloud Security', dueDate:'2026-07-15'},
+    {id:'IA-2203', type:'Internal Audit', title:'Third Party Risk Management Audit', severity:'High', status:'Open', owner:'J. Alvarez', region:'US', business:'Enterprise', riskCategory:'Third Party Risk', dueDate:'2026-09-30'},
+    {id:'IA-2204', type:'Internal Audit', title:'Payments Technology Audit', severity:'High', status:'Open', owner:'S. Patel', region:'US', business:'Payments', riskCategory:'Application Security', dueDate:'2026-10-31'},
+    {id:'IA-2205', type:'Internal Audit', title:'Infrastructure Patch Management Audit', severity:'Medium', status:'Closed', owner:'R. Osei', region:'EMEA', business:'Technology Infrastructure', riskCategory:'Patch Management', dueDate:'2026-02-01'},
+    {id:'IA-2206', type:'Internal Audit', title:'Data Governance Audit', severity:'Low', status:'Open', owner:'D. Whitfield', region:'US', business:'Enterprise', riskCategory:'Governance & Documentation', dueDate:'2026-11-30'}
+  ];
+
+  var AS_OF = new Date('2026-08-01T00:00:00');
+  var SEV_COLOR = { High: 'var(--status-bad)', Medium: 'var(--status-warn)', Low: 'var(--status-good)' };
+
+  function daysBetween(a, b) { return Math.round((b - a) / 86400000); }
+
+  function uniqueSorted(field) {
+    var set = {};
+    ISSUES.forEach(function (i) { set[i[field]] = true; });
+    return Object.keys(set).sort();
+  }
+
+  function populateSelect(id, field) {
+    var el = document.getElementById(id);
+    uniqueSorted(field).forEach(function (v) {
+      var opt = document.createElement('option');
+      opt.value = v; opt.textContent = v;
+      el.appendChild(opt);
+    });
+  }
+  populateSelect('f-owner', 'owner');
+  populateSelect('f-business', 'business');
+  populateSelect('f-region', 'region');
+
+  function getFiltered() {
+    var owner = document.getElementById('f-owner').value;
+    var business = document.getElementById('f-business').value;
+    var region = document.getElementById('f-region').value;
+    return ISSUES.filter(function (i) {
+      return (owner === 'All' || i.owner === owner)
+        && (business === 'All' || i.business === business)
+        && (region === 'All' || i.region === region);
+    });
+  }
+
+  function countBy(list, field) {
+    var out = {};
+    list.forEach(function (i) { out[i[field]] = (out[i[field]] || 0) + 1; });
+    return out;
+  }
+
+  function renderBars(containerId, dataObj) {
+    var container = document.getElementById(containerId);
+    var entries = Object.keys(dataObj).map(function (k) { return [k, dataObj[k]]; });
+    entries.sort(function (a, b) { return b[1] - a[1]; });
+    if (!entries.length) { container.innerHTML = '<div class="bars-empty">No issues match the current filters.</div>'; return; }
+    var max = Math.max.apply(null, entries.map(function (e) { return e[1]; }));
+    container.innerHTML = entries.map(function (e) {
+      var pct = Math.max((e[1] / max) * 100, 4);
+      return '<div class="bar-row">' +
+        '<div class="bar-label" title="' + e[0] + '">' + e[0] + '</div>' +
+        '<div class="bar-track"><div class="bar-fill" style="width:' + pct + '%; background:var(--global);"></div></div>' +
+        '<div class="bar-value">' + e[1] + '</div>' +
+        '</div>';
+    }).join('');
+  }
+
+  function renderSeverityByType(list) {
+    var container = document.getElementById('chartSeverityByType');
+    var types = ['Findings', 'Enterprise Issues', 'Internal Audit'];
+    var rows = types.map(function (t) {
+      var subset = list.filter(function (i) { return i.type === t; });
+      var counts = { High: 0, Medium: 0, Low: 0 };
+      subset.forEach(function (i) { counts[i.severity] = (counts[i.severity] || 0) + 1; });
+      var total = subset.length;
+      var segs = ['High', 'Medium', 'Low'].map(function (sev) {
+        if (!counts[sev]) return '';
+        var pct = total ? (counts[sev] / total) * 100 : 0;
+        return '<div class="stack-seg" title="' + sev + ': ' + counts[sev] + '" style="width:' + pct + '%; background:' + SEV_COLOR[sev] + ';"></div>';
+      }).join('');
+      return '<div class="stack-row">' +
+        '<div class="bar-label">' + t + '</div>' +
+        '<div class="stack-track">' + (total ? segs : '') + '</div>' +
+        '<div class="stack-total">' + total + '</div>' +
+        '</div>';
+    });
+    container.innerHTML = rows.join('');
+  }
+
+  function renderDueSoon(list) {
+    var open = list.filter(function (i) { return i.status !== 'Closed'; });
+    var upcoming = open.map(function (i) {
+      var d = new Date(i.dueDate + 'T00:00:00');
+      return { issue: i, daysOut: daysBetween(AS_OF, d) };
+    }).filter(function (r) { return r.daysOut >= 0 && r.daysOut <= 60; });
+    upcoming.sort(function (a, b) { return a.daysOut - b.daysOut; });
+
+    var due30 = upcoming.filter(function (r) { return r.daysOut <= 30; }).length;
+    var due60 = upcoming.length;
+    document.getElementById('statDue30').textContent = due30;
+    document.getElementById('statDue60').textContent = due60;
+
+    var body = document.getElementById('dueTableBody');
+    if (!upcoming.length) {
+      body.innerHTML = '<tr><td colspan="7" class="bars-empty">No open issues due within 60 days for the current filters.</td></tr>';
+      return;
+    }
+    body.innerHTML = upcoming.map(function (r) {
+      var i = r.issue;
+      var winTag = r.daysOut <= 30
+        ? '<span class="win-tag win-30">&le;30d</span>'
+        : '<span class="win-tag win-60">31&ndash;60d</span>';
+      return '<tr>' +
+        '<td class="mono">' + i.id + '</td>' +
+        '<td>' + i.title + '</td>' +
+        '<td>' + i.type + '</td>' +
+        '<td>' + i.severity + '</td>' +
+        '<td>' + i.owner + '</td>' +
+        '<td class="num">' + i.dueDate + '</td>' +
+        '<td>' + winTag + '</td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  function render() {
+    var list = getFiltered();
+
+    document.getElementById('filterSummary').innerHTML =
+      'Showing <strong>' + list.length + '</strong> of <strong>' + ISSUES.length + '</strong> issues.';
+
+    renderBars('chartByType', countBy(list, 'type'));
+    renderSeverityByType(list);
+    renderBars('chartByOwner', countBy(list, 'owner'));
+    renderBars('chartByRiskCategory', countBy(list, 'riskCategory'));
+    renderDueSoon(list);
+  }
+
+  ['f-owner', 'f-business', 'f-region'].forEach(function (id) {
+    document.getElementById(id).addEventListener('change', render);
+  });
+  document.getElementById('filterReset').addEventListener('click', function () {
+    document.getElementById('f-owner').value = 'All';
+    document.getElementById('f-business').value = 'All';
+    document.getElementById('f-region').value = 'All';
+    render();
+  });
+
+  document.getElementById('reportSelect').addEventListener('change', function () {
+    var val = this.value;
+    document.querySelectorAll('.report-panel').forEach(function (p) { p.classList.remove('active'); });
+    var target = document.getElementById('report-' + val);
+    if (target) target.classList.add('active');
+  });
+
+  render();
+})();
+</script>
