@@ -46,10 +46,18 @@ is locked for now.** Work has moved to deepening one Service at a time,
 starting with [services/it-risk-issues-management/](services/it-risk-issues-management/):
 trigger/inputs/outputs/steps documented for its first process
 ([Aggregated Issues Reporting](services/it-risk-issues-management/processes/aggregated-issues-reporting/)),
-synthetic sample data generated to prototype against, and a dedicated
-Service overview page (fixed header with all four processes; Reporting →
-Aggregated Issues Summary is built out as a live, filterable report on
-that sample data):
+synthetic sample data (72 issues, ~18 months of history, plus 54
+Findings/Enterprise Issues now carrying an analyst-review workflow —
+RNV/on-track-off-track fields included) to prototype against, and a
+dedicated Service overview page (Reporting is the default landing view)
+with three reports built out. **Service Performance** (Analyst/Issue
+Owner filters) tracks the analyst review step itself: timeliness and 2LOD
+quality trend lines per analyst over the past year, summary stats, and an
+aging-by-analyst queue table. **Issues Summary** and the **Issue Aging
+Report** (Owner/Business/Region filters, independent per report) cover
+the issue population itself — by type/severity/owner/risk category with a
+12-month opened/closed trend line, and coming-due/severity-mix with a
+stacked bar by owner across 30/60/90-day windows, respectively:
 https://claude.ai/code/artifact/ae791543-54b6-4745-a6d7-434fecab19f1
 
 Schema defined (matrix-aware: `function` + `subteam` + `region` +

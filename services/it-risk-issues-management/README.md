@@ -21,21 +21,32 @@ closure.
 ## Overview page
 
 Polished, shareable version — fixed header with the four processes below
-(Reporting has a dropdown for individual reports); content changes based
-on what's selected. Only Reporting → Aggregated Issues Summary is built
-out so far, as a filterable (Owner/Business/Region) report on the sample
-data:
+(Reporting, first in the row and the default view, has a dropdown for
+individual reports); content changes based on what's selected:
 https://claude.ai/code/artifact/ae791543-54b6-4745-a6d7-434fecab19f1
+
+- **Service Performance** — analyst review of Findings/Enterprise Issues:
+  timeliness and quality (2LOD rejection) trend lines by analyst over the
+  past year, summary stats, and an aging-by-analyst queue table. Filterable
+  by Analyst or Issue Owner.
+- **Reporting → Issues Summary** — by type, severity, owner, risk
+  category, plus a 12-month opened/closed trend line. Filterable by
+  Owner/Business/Region.
+- **Reporting → Issue Aging Report** — severity mix, coming-due table, and
+  coming-due-by-owner stacked by 30/60/90 days. Same filters as Issues
+  Summary, independent state.
+- **Promotion to Enterprise Issues** and **Aggregation of Issues** — not
+  yet built.
 
 ## Processes
 
 | Process | Status | Path |
 |---|---|---|
-| Review Issues | Not yet documented | — |
+| Service Performance | Built (sample data) | overview page above |
 | Promotion to Enterprise Issues | Not yet documented | — |
 | Aggregation of Issues | Documented | [processes/aggregated-issues-reporting/](processes/aggregated-issues-reporting/) |
-| Reporting → Aggregated Issues Summary | Built (sample data) | overview page above |
-| Reporting → Overdue &amp; Aging Report | Not yet built | — |
+| Reporting → Issues Summary | Built (sample data) | overview page above |
+| Reporting → Issue Aging Report | Built (sample data) | overview page above |
 | Reporting → Remediation Plan Status | Not yet built | — |
 
 This is very likely not the complete list of processes this Service
