@@ -101,7 +101,7 @@ the Layer 2 cross-links, not confirmed ownership.
 | Risk Data & Aggregation | Inherent Risk Support Service | _open — likely pairs with Inherent Risk API Service_ |
 | Reporting Support | IT Risk Metrics Support Service | F3.4 Metrics Management |
 | Reporting Support | Risk Documentation Site Support Service | F3.2 Reporting (or F1.1 Policy and Procedure Management) |
-| Regulatory & Issues | Regulatory Response Management Service | F5.3 Reg Response |
+| Regulatory & Issues | Response Management (Audit - Internal and External, Regulatory, Client) | F5.3 Reg Response |
 | Regulatory & Issues | IT Risk Issues Management Service | F5 (general — Request Intake / Client Due Diligence area) |
 | Enablement | Application Development and Automation Services | F3.3 Data & Automation |
 
@@ -146,7 +146,7 @@ the actual process:
 directly (or support other services) rather than produce one of the 16
 named products:
 
-- Regulatory Response Management Service
+- Response Management (Audit - Internal and External, Regulatory, Client)
 - Third Party IT Risk Advisory
 - Application Development and Automation Services (an enabling service —
   it likely builds/maintains what other services run on, which is really a

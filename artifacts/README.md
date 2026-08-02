@@ -9,6 +9,7 @@ for what each one covers and what data backs it.
 |---|---|---|
 | `org-chart.html` | https://claude.ai/code/artifact/08aa5da3-9f33-4495-95e9-fa936c67c3a1 | Operating model: Team Overview, People/Process/Technology/Reference Material tabs, org chart, Consumer × Product × Service map |
 | `it-risk-issues-management.html` | https://claude.ai/code/artifact/ae791543-54b6-4745-a6d7-434fecab19f1 | IT Risk Issues Management Service overview: fixed process nav (Reporting default), Service Performance / Issues Summary / Issue Aging Report on the sample data in `services/it-risk-issues-management/` |
+| `response-management.html` | https://claude.ai/code/artifact/402cf547-0dc7-4f8e-af24-bdf2e2c6ecb8 | Response Management (Audit - Internal and External, Regulatory, Client) Service overview: fixed nav (Overview default; Audit, Regulatory, Client, Service Performance not yet built), cross-channel inquiry Overview report on the sample data in `services/response-management/` |
 
 ## Design system for future artifacts
 

@@ -7,6 +7,7 @@ this nests under the 17 reference-architecture Services.
 | Process | Service (parent) | Function | Description | Doc Status | Path |
 |---|---|---|---|---|---|
 | Aggregated Issues Reporting | IT Risk Issues Management Service | Regulatory, Audit & Issues Management | Pulls Findings, Enterprise Issues, and Internal Audit data into a master file and distributes a report | in-progress | [services/it-risk-issues-management/processes/aggregated-issues-reporting/](services/it-risk-issues-management/processes/aggregated-issues-reporting/) |
+| Inquiry & Response Tracking | Response Management (Audit - Internal and External, Regulatory, Client) | Regulatory, Audit & Issues Management | Tracks Audit/Regulatory/Client inquiries from receipt to closed response, coordinated by an analyst but answered by a domain response owner | in-progress | [services/response-management/processes/inquiry-response-tracking/](services/response-management/processes/inquiry-response-tracking/) |
 
 ## Teams / Functions
 

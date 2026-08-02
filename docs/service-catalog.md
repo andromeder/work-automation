@@ -263,16 +263,19 @@ variance −3% → **Green**.
 
 ## Regulatory & Issues
 
-### Regulatory Response Management Service — `Red`
+### Response Management (Audit - Internal and External, Regulatory, Client) — `Red`
 
-Coordinates the department's responses to regulator inquiries and exam
-requests — pulling evidence and subject-matter input together on the
-regulator's clock, which makes this one of the least forgiving SLAs in
-the department. Candidate owner: **F5.3**.
+Coordinates the department's responses to inquiries from three
+directions at once — Internal Audit, External/Regulatory Audit and
+examiner requests, and Client due-diligence questionnaires — pulling
+evidence and subject-matter input together on each requester's clock,
+which makes this one of the least forgiving SLAs in the department
+(broadened from a Regulatory-only scope to cover all three inquiry
+channels under one coordinating function). Candidate owner: **F5.3**.
 
 | KPI | Target | Sample | RAG |
 |---|---|---|---|
-| Responses submitted by regulator deadline | 100% | 88% | Red |
+| Responses submitted by requester deadline | 100% | 88% | Red |
 | Responses requiring resubmission/clarification | ≤ 10% | 19% | Red |
 | Evidence requests fulfilled within internal SLA | ≥ 90% | 79% | Red |
 
@@ -309,7 +312,7 @@ variance −1% → **Green**.
 
 | RAG | Services |
 |---|---|
-| 🔴 Red | Change Initiative Risk Assessment Service, Regulatory Response Management Service, IT Risk Issues Management Service |
+| 🔴 Red | Change Initiative Risk Assessment Service, Response Management (Audit - Internal and External, Regulatory, Client), IT Risk Issues Management Service |
 | 🟠 Amber | Cloud Scorecard, ACA/ICA Support Request Service, Cyber and Technology Support Service, Third Party IT Risk Advisory, RCSA Aggregation Service, IT Risk Metrics Support Service |
 | 🟢 Green | Application Control Assessment, Infrastructure Control Assessment Service, IT Controls Support, Operational Risk Event Consultation Service, Inherent Risk API Service, Inherent Risk Support Service, Risk Documentation Site Support Service, Application Development & Automation Services |
 

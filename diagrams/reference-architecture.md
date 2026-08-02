@@ -51,7 +51,7 @@ flowchart LR
         S_ACA["Application Control Assessment · F8.3"]
         S_CLOUD["Cloud Scorecard · F8.2"]
         S_ITCS["IT Controls Support (Control Advisory) · F3.5"]
-        S_RRM["Regulatory Response Management Service · F5.3"]
+        S_RRM["Response Management (Audit - Internal and External, Regulatory, Client) · F5.3"]
         S_IRAS["Inherent Risk API Service · open"]
         S_CTS["Cyber and Technology Support Service · open"]
         S_ICA["Infrastructure Control Assessment Service · F8.4"]
@@ -117,7 +117,7 @@ Service node carries its candidate owner (the `F.*` reference key from
 [docs/org-structure.md](../docs/org-structure.md)) — `open` means
 ownership isn't confirmed. Unmapped-to-a-product-or-service nodes:
 **Crown Jewel Report** and **Payments Assessments** on the product side;
-**Regulatory Response Management Service**, **Third Party IT Risk
-Advisory**, and **Application Development & Automation Services** on the
-service side. See the open questions in
+**Response Management (Audit - Internal and External, Regulatory, Client)**,
+**Third Party IT Risk Advisory**, and **Application Development &
+Automation Services** on the service side. See the open questions in
 [docs/reference-architecture.md](../docs/reference-architecture.md).

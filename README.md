@@ -60,6 +60,24 @@ the issue population itself — by type/severity/owner/risk category with a
 stacked bar by owner across 30/60/90-day windows, respectively:
 https://claude.ai/code/artifact/ae791543-54b6-4745-a6d7-434fecab19f1
 
+A second Service is now underway:
+[services/response-management/](services/response-management/) —
+renamed from Regulatory Response Management Service and broadened to
+cover **Audit** (Internal and External), **Regulatory**, and **Client**
+inquiry channels under one coordinating process
+([Inquiry & Response Tracking](services/response-management/processes/inquiry-response-tracking/)),
+with 70 synthetic inquiries (23 open) across the three channels. Its
+overview page follows the same pattern as IT Risk Issues Management —
+fixed nav across Overview/Audit/Regulatory/Client/Service Performance —
+with the **Overview** report built first: filters (Inquiry Type, Client,
+Exam/Audit Name), open-vs-closed inquiry volume by review and by domain,
+and a due-date aging table (24h/48h/5bd/20bd/beyond) with a drill-down
+to individual inquiries. The other four tabs aren't built yet. Domain
+tagging now draws from a new standalone reference file,
+[docs/reference/domains.md](docs/reference/domains.md), shared across
+both Services rather than redefined per service:
+https://claude.ai/code/artifact/402cf547-0dc7-4f8e-af24-bdf2e2c6ecb8
+
 Schema defined (matrix-aware: `function` + `subteam` + `region` +
 `matrix_relationships`, see [docs/schema.md](docs/schema.md)). Layers 1–2
 of the org — Head, Global IT Risk, its 8 functions, and their 30 subteams —

@@ -34,7 +34,20 @@ services/
 
 ## Status
 
-Only one Service is broken out so far: [it-risk-issues-management/](it-risk-issues-management/),
-with one process documented: [aggregated-issues-reporting/](it-risk-issues-management/processes/aggregated-issues-reporting/).
-The other 16 Services and IT Risk Issues Management Service's other
-processes aren't started — add them the same way when it's time.
+Two Services are broken out so far:
+
+- [it-risk-issues-management/](it-risk-issues-management/) — one process
+  documented: [aggregated-issues-reporting/](it-risk-issues-management/processes/aggregated-issues-reporting/).
+- [response-management/](response-management/) (renamed from Regulatory
+  Response Management Service, broadened to Audit/Regulatory/Client) —
+  one process documented: [inquiry-response-tracking/](response-management/processes/inquiry-response-tracking/).
+
+The other 15 Services and these two Services' other processes aren't
+started — add them the same way when it's time.
+
+## Shared reference data
+
+[docs/reference/domains.md](../docs/reference/domains.md) is a
+standalone Domain/Subdomain/Domain Owner lookup meant to be reused across
+every Service's sample data rather than redefined per service — both
+Services above already draw from it.
